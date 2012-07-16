@@ -20,36 +20,16 @@
       <owl:Class rdf:ID="Value"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class>
-    <owl:unionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="#Stage2Value"/>
-      <owl:Class rdf:ID="CityValue"/>
-    </owl:unionOf>
-  </owl:Class>
   <owl:Class rdf:ID="Turkey"/>
-  <owl:Class rdf:ID="Stage1"/>
-  <owl:Class rdf:about="#CityValue">
-    <rdfs:subClassOf rdf:resource="#Value"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Stage2"/>
   <owl:Class>
     <owl:unionOf rdf:parseType="Collection">
       <owl:Class rdf:about="#Stage2Value"/>
       <owl:Class rdf:ID="Stage1Value"/>
-      <owl:Class rdf:about="#CityValue"/>
+      <owl:Class rdf:ID="CityValue"/>
     </owl:unionOf>
   </owl:Class>
-  <owl:Class rdf:ID="EnterpriseValue">
-    <rdfs:subClassOf rdf:resource="#Value"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Sector"/>
-  <owl:Class>
-    <owl:unionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="#Stage2Value"/>
-      <owl:Class rdf:about="#CityValue"/>
-    </owl:unionOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Stage1Value">
+  <owl:Class rdf:ID="Stage1"/>
+  <owl:Class rdf:about="#CityValue">
     <rdfs:subClassOf rdf:resource="#Value"/>
   </owl:Class>
   <owl:Class>
@@ -59,10 +39,41 @@
       <owl:Class rdf:about="#CityValue"/>
     </owl:unionOf>
   </owl:Class>
+  <owl:Class rdf:ID="Stage2"/>
+  <owl:Class rdf:ID="EnterpriseValue">
+    <rdfs:subClassOf rdf:resource="#Value"/>
+  </owl:Class>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#Stage2Value"/>
+      <owl:Class rdf:about="#CityValue"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Sector"/>
+  <owl:Class rdf:about="#Stage1Value">
+    <rdfs:subClassOf rdf:resource="#Value"/>
+  </owl:Class>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#Stage2Value"/>
+      <owl:Class rdf:about="#CityValue"/>
+    </owl:unionOf>
+  </owl:Class>
   <owl:Class rdf:ID="City"/>
   <owl:Class rdf:ID="TurkeyValue">
     <rdfs:subClassOf rdf:resource="#Value"/>
   </owl:Class>
+  <owl:ObjectProperty rdf:ID="hasRegion">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Stage2"/>
+          <owl:Class rdf:about="#Turkey"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Stage1"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasValue">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >&lt;p style="margin-top: 0"&gt;
@@ -81,53 +92,6 @@
       </owl:Class>
     </rdfs:domain>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="createdIn">
-    <rdfs:range rdf:resource="#City"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="subOrganizationOf">
-    <rdfs:domain rdf:resource="#Enterprise"/>
-    <rdfs:range rdf:resource="#Enterprise"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="hasSubOrganization"/>
-    </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasMeeting">
-    <rdfs:range rdf:resource="#Meeting"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="egitim">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:subPropertyOf>
-      <owl:SymmetricProperty rdf:ID="hasSector"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasProperty">
-    <owl:propertyDisjointWith rdf:resource="#hasValue"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <owl:inverseOf rdf:resource="#hasProperty"/>
-    <rdfs:domain rdf:resource="#Sector"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#hasSubOrganization">
-    <rdfs:range rdf:resource="#Enterprise"/>
-    <rdfs:domain rdf:resource="#Enterprise"/>
-    <owl:inverseOf rdf:resource="#subOrganizationOf"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasRegion">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Stage2"/>
-          <owl:Class rdf:about="#Turkey"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdfs:range rdf:resource="#Stage1"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasStage2">
     <rdfs:domain>
       <owl:Class>
@@ -138,16 +102,6 @@
       </owl:Class>
     </rdfs:domain>
     <rdfs:range rdf:resource="#Stage2"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasMeasure">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:range rdf:resource="#Measure"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasResource">
-    <rdfs:range rdf:resource="#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasCity">
     <rdfs:range rdf:resource="#City"/>
@@ -165,24 +119,164 @@
   <owl:DatatypeProperty rdf:ID="turkeyMin">
     <rdfs:domain rdf:resource="#CityValue"/>
   </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="gatherType">
+  <owl:DatatypeProperty rdf:ID="year">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Stage2Value"/>
+          <owl:Class rdf:about="#Stage1Value"/>
+          <owl:Class rdf:about="#TurkeyValue"/>
+          <owl:Class rdf:about="#CityValue"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="value">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Stage2Value"/>
+          <owl:Class rdf:about="#Stage1Value"/>
+          <owl:Class rdf:about="#TurkeyValue"/>
+          <owl:Class rdf:about="#CityValue"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:SymmetricProperty rdf:ID="hasProperty">
+    <owl:propertyDisjointWith rdf:resource="#hasValue"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#hasProperty"/>
+    <rdfs:domain rdf:resource="#Sector"/>
+  </owl:SymmetricProperty>
+  <owl:FunctionalProperty rdf:ID="hasMeasure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Measure"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasResource">
+    <rdfs:range rdf:resource="#Resource"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="createdIn">
+    <rdfs:range rdf:resource="#City"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="minValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="subOrganizationOf">
+    <rdfs:domain rdf:resource="#Enterprise"/>
+    <rdfs:range rdf:resource="#Enterprise"/>
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:ID="hasSubOrganization"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasMeeting">
+    <rdfs:range rdf:resource="#Meeting"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasSector">
+    <owl:inverseOf rdf:resource="#hasSector"/>
+    <rdfs:range rdf:resource="#Sector"/>
+    <rdfs:domain rdf:resource="#Value"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="egitim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#hasSector"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="name">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdfs:Class rdf:about="#Enterprise"/>
+          <owl:Class rdf:about="#City"/>
+          <owl:Class rdf:about="#Sector"/>
+          <owl:Class rdf:about="#Stage1"/>
+          <rdfs:Class rdf:about="#Resource"/>
+          <owl:Class rdf:about="#Stage2"/>
+          <rdfs:Class rdf:about="#Measure"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="maxValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="id">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdfs:Class rdf:about="#Enterprise"/>
+          <owl:Class rdf:about="#City"/>
+          <owl:Class rdf:about="#Value"/>
+          <rdfs:Class rdf:about="#Meeting"/>
+          <owl:Class rdf:about="#Sector"/>
+          <owl:Class rdf:about="#Stage1"/>
+          <rdfs:Class rdf:about="#Resource"/>
+          <owl:Class rdf:about="#Stage2"/>
+          <rdfs:Class rdf:about="#Measure"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:about="#hasSubOrganization">
+    <rdfs:range rdf:resource="#Enterprise"/>
+    <rdfs:domain rdf:resource="#Enterprise"/>
+    <owl:inverseOf rdf:resource="#subOrganizationOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:InverseFunctionalProperty>
+  <owl:AnnotationProperty rdf:ID="formType">
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >Sektörel Envanter ve İhtiyaç</rdf:first>
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Sektörel İzleme</rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </rdf:rest>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="propertyType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >&lt;p style="margin-top: 0"&gt;&#xD;
+      headermi metadatami&#xD;
+    &lt;/p&gt;</rdfs:comment>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="gatherType">
     <rdfs:domain rdf:resource="#Value"/>
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >Auto</rdf:first>
           <rdf:rest rdf:parseType="Resource">
             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >Manuel</rdf:first>
           </rdf:rest>
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >Auto</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="provinceType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="provinceType">
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
@@ -205,42 +299,10 @@
     >&lt;p style="margin-top: 0"&gt;
       veri_gir_sut
     &lt;/p&gt;</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="maxValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="year">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Stage2Value"/>
-          <owl:Class rdf:about="#Stage1Value"/>
-          <owl:Class rdf:about="#TurkeyValue"/>
-          <owl:Class rdf:about="#CityValue"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="collectType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdfs:range>
-      <owl:DataRange>
-        <owl:oneOf rdf:parseType="Resource">
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >Manuel</rdf:first>
-          <rdf:rest rdf:parseType="Resource">
-            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Auto</rdf:first>
-          </rdf:rest>
-        </owl:oneOf>
-      </owl:DataRange>
-    </rdfs:range>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="status">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >&lt;p style="margin-top: 0"&gt;
       ustveri durumu
@@ -252,113 +314,56 @@
           <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
           >Aktif</rdf:first>
           <rdf:rest rdf:parseType="Resource">
-            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >Pasif</rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
           </rdf:rest>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="minValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="type">
+  </owl:AnnotationProperty>
+  <Sector rdf:ID="Egitim"/>
+  <owl:AnnotationProperty rdf:ID="collectType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Auto</rdf:first>
+          </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >Manuel</rdf:first>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="type">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >&lt;p style="margin-top: 0"&gt;
       sutun
     &lt;/p&gt;</rdfs:comment>
     <rdfs:domain rdf:resource="#Value"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >Mevcut Durum</rdf:first>
           <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >İhtiyaç</rdf:first>
             <rdf:rest rdf:parseType="Resource">
               <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
               >İzleme</rdf:first>
               <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
             </rdf:rest>
-            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >İhtiyaç</rdf:first>
           </rdf:rest>
-        </owl:oneOf>
-      </owl:DataRange>
-    </rdfs:range>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="formType">
-    <rdfs:range>
-      <owl:DataRange>
-        <owl:oneOf rdf:parseType="Resource">
           <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >Sektörel Envanter ve İhtiyaç</rdf:first>
-          <rdf:rest rdf:parseType="Resource">
-            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Sektörel İzleme</rdf:first>
-          </rdf:rest>
+          >Mevcut Durum</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="name">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <rdfs:Class rdf:about="#Enterprise"/>
-          <owl:Class rdf:about="#City"/>
-          <owl:Class rdf:about="#Sector"/>
-          <owl:Class rdf:about="#Stage1"/>
-          <rdfs:Class rdf:about="#Resource"/>
-          <owl:Class rdf:about="#Stage2"/>
-          <rdfs:Class rdf:about="#Measure"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="id">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <rdfs:Class rdf:about="#Enterprise"/>
-          <owl:Class rdf:about="#City"/>
-          <owl:Class rdf:about="#Value"/>
-          <rdfs:Class rdf:about="#Meeting"/>
-          <owl:Class rdf:about="#Sector"/>
-          <owl:Class rdf:about="#Stage1"/>
-          <rdfs:Class rdf:about="#Resource"/>
-          <owl:Class rdf:about="#Stage2"/>
-          <rdfs:Class rdf:about="#Measure"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="value">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Stage2Value"/>
-          <owl:Class rdf:about="#Stage1Value"/>
-          <owl:Class rdf:about="#TurkeyValue"/>
-          <owl:Class rdf:about="#CityValue"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-  </owl:DatatypeProperty>
-  <owl:SymmetricProperty rdf:about="#hasSector">
-    <owl:inverseOf rdf:resource="#hasSector"/>
-    <rdfs:range rdf:resource="#Sector"/>
-    <rdfs:domain rdf:resource="#Value"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:SymmetricProperty>
-  <Sector rdf:ID="Egitim"/>
+  </owl:AnnotationProperty>
   <Turkey rdf:ID="Turkey_1">
     <ilkogretimOgrenciSayisi>
       <TurkeyValue rdf:ID="TurkeyValue_10"/>

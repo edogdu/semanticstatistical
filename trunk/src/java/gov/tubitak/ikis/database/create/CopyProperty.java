@@ -128,6 +128,7 @@ public class CopyProperty {
                             Sparql.insertProperty(TUIK + BASLIK_ADI, RDF + "type", OWL + "ObjectProperty");
                             Sparql.insertLiteral(TUIK + BASLIK_ADI, RDFS + "label", BASLIK_ADI);
                             Sparql.insertLiteral(TUIK + BASLIK_ADI, RDFS + "label", BASLIKTR);
+                            Sparql.insertLiteral(TUIK + BASLIK_ADI, TUIK + "propertyType", "header");
                         }
                         Sparql.insertProperty(TUIK + USTVERI_ADI, RDF + "type", OWL + "ObjectProperty");
                         Sparql.insertLiteral(TUIK + USTVERI_ADI, RDFS + "label", USTVERİENG+"@en");
@@ -142,6 +143,7 @@ public class CopyProperty {
                         Sparql.insertProperty(TUIK + USTVERI_ADI, TUIK + "hasProperty", TUIK + SEKTOR);
                         Sparql.insertProperty(TUIK + USTVERI_ADI, RDFS + "subPropertyOf", TUIK + BASLIK_ADI);
                         Sparql.insertLiteral(TUIK + USTVERI_ADI, RDFS + "comment", "Baslık adı: " + BASLIK_ADI + " Ustveri: " + USTVERI_ADI);
+                        Sparql.insertLiteral(TUIK + USTVERI_ADI, TUIK + "propertyType", "metadata");
                     } catch (DatabaseConnectException ex) {
                         Logger.getLogger(CopyProperty.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (DatabaseWriteOrDeleteException ex) {

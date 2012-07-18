@@ -30,7 +30,7 @@ public class Properties {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Property(next.get("pro").toString(), next.get("pro").toString(), next.get("label").toString(),next.get("label").toString());
+            array[i]=new Property(next.get("pro").toString(), next.get("pro").toString(), next.get("pro").toString(),next.get("pro").toString());
             i++;
         }
         return array;

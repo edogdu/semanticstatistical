@@ -14,6 +14,13 @@ public class Stage2 implements Item{
     private String enLabel;
     private String trLabel;
 
+    public Stage2(String name, String id, String enLabel, String trLabel) {
+        this.name = name;
+        this.id = id;
+        this.enLabel = enLabel;
+        this.trLabel = trLabel;
+    }
+
     @Override
     public String getEnLabel() {
         return enLabel;

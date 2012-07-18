@@ -51,7 +51,7 @@ public class CreateDatabase {
 		Dataset data=SDBFactory.connectDataset(store);
 		
         Model model = SDBFactory.connectDefaultModel(store) ;
-        InputStream in=FileManager.get().open("tuikV3.owl");
+        InputStream in=FileManager.get().open("tuikV4.owl");
         model.read(in, null);
         data.getDefaultModel().add(model);
         data.getDefaultModel().write(System.out, "N-TRIPLE");

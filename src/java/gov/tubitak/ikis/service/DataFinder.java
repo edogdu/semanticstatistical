@@ -4,13 +4,15 @@
  */
 package gov.tubitak.ikis.service;
 
+import gov.tubitak.ikis.items.Data;
+
 /**
  *
  * @author cem.ozkan
  */
-public class Data {
-    public static String[] getdata(String[] metadata, String[] stage1, String[] stage2,String[] province){
-        String[] array=null;
+public class DataFinder {
+    public static Data[] getdata(String[] metadata, String[] stage1, String[] stage2,String[] province){
+        Data[] array=null;
         
         return array;
         

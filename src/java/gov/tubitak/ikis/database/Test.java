@@ -17,8 +17,9 @@ public class Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        ResultSet search = Sparql.search("SELECT ?a ?st1 WHERE { ?st1 :studentCountInEducation ?a}");
+//        String query="select ?pro where{?pro rdf:type owl:ObjectProperty. ?pro :propertyType "+"\"header\""+"}";
+        String query="select ?pro where{?pro rdf:type owl:ObjectProperty. ?pro rdfs:subPropertyOf "+"<http://www.tuik.com/tuik#economicIndicators>"+".}";
+        ResultSet search = Sparql.search(query);
         ResultSetFormatter.out(search);
     }
 }

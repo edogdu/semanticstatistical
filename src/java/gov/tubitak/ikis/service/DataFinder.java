@@ -13,7 +13,7 @@ import gov.tubitak.ikis.items.Data;
 public class DataFinder {
     public static Data[] getdata(String[] metadata, String[] stage1, String[] stage2,String[] province){
         Data[] array=null;
-        
+        String query="";//UNION fln kullanman lazım
         return array;
         
     }

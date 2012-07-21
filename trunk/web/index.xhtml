@@ -16,22 +16,28 @@
             <h:form>
                <!-- <p:commandButton value="Verileri Getir" update="data"/>-->
             </h:form>
-            <p:accordionPanel>
+            <p:accordionPanel multiple="true">
                 <p:tab title="Başlık">
                     <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
-                        <f:selectItems value="#{PageBean.headers}" var="header" itemLabel="#{header.name}"/>
+                        <f:selectItem itemLabel="Male"/>
+                        <f:selectItem itemLabel="Female"/>
+                        <f:selectItem itemLabel="Economic Indicators"/>
+                        <!--<f:selectItems value="#{PageBean.headers}" var="header" itemLabel="#{header.name}"/>-->
                         <p:ajax update="metadata" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Üstveri" id="metadata" >
                     <p:selectManyCheckbox value="#{PageBean.selectedMetadatas}" layout="pageDirection" >
-                        <f:selectItems value="#{PageBean.metadatas}" var="metadata" itemLabel="#{metadata.name}"/>
+                        <f:selectItem itemLabel="Number of Students"/>
+                        <f:selectItem itemLabel="Student Count Of Boys In High School In Education"/>
+                        <f:selectItem itemLabel="Student Count Of Boys In Public High School In Education"/>
+                        <!--<f:selectItems value="#{PageBean.metadatas}" var="metadata" itemLabel="#{metadata.name}"/>-->
                         
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Düzey1" id="stage1">
                     <p:selectManyCheckbox value="#{PageBean.selectedStage1}" layout="pageDirection" >
-                        <f:selectItems value="#{PageBean.stage1}" var="stage1" itemLabel="#{stage1.name}"/>
+                        <f:selectItems value="#{PageBean.stage1}" var="stage1" itemLabel="#{stage1.trLabel}"/>
                         <p:ajax update="stage2" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
@@ -49,7 +55,7 @@
             </p:accordionPanel>
         </ui:define>
         <ui:define name="content">
-            <p:dataTable id="data" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data"> 
+            <p:dataTable id="data" emptyMessage="Kayıt Bulunamadı" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data"> 
                 <p:column headerText="Düzey">
                     #{data.belongsTo.trLabel}
                 </p:column>
@@ -58,6 +64,9 @@
                 </p:column>
                 <p:column headerText="Baslık">
                     #{data.property}
+                </p:column>
+                <p:column headerText="Sektör">
+                    #{data.value}
                 </p:column>
                 <p:column headerText="Veri">
                     #{data.value}

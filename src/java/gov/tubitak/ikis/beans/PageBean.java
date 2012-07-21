@@ -29,6 +29,15 @@ public class PageBean {
     private Stage2[] selectedStage2;
     private Item[] selectedProvince;
 
+    public PageBean() {
+        selectedHeaders =new Item[1];
+        selectedMetadatas =new Item[1];
+        selectedProvince =new Item[1];
+        selectedStage1=new Stage1[1];
+        selectedStage2=new Stage2[1];
+    }
+
+    
     public Item[] getSelectedMetadatas() {
         return selectedMetadatas;
     }
@@ -78,17 +87,21 @@ public class PageBean {
     }
     
     public Item[] getStage2(){
-        return GetItems.getStage2(selectedStage1[0]);
+        if(selectedStage1[0]!=null)
+            return GetItems.getStage2(selectedStage1[0]);
+        return  new Item[1];
     }
     
     public Item[] getProvince(){
-        return GetItems.getProvince(selectedStage2[0]);
+        if(selectedStage2[0]!=null)
+            return GetItems.getProvince(selectedStage2[0]);
+        return  new Item[1];
     }
     
     public Item[] getMetadatas(){
-        if(selectedHeaders.length>0)
+        if(selectedHeaders[0]!=null)
             return Properties.getMetadata(selectedHeaders[0].getName());
-        return null;
+        return  new Item[1];
     }
     
     public Data[] getDatas(){

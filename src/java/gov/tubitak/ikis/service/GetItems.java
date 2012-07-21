@@ -22,7 +22,7 @@ import java.util.List;
 public class GetItems {
     public static Stage1[] getStage1(){
         Stage1[] array;
-        String query="select ?st ?id where{?st rdf:type :Stage1. ?st :id ?id.";
+        String query="select ?st ?id where{?st rdf:type :Stage1. ?st :id ?id.}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Stage1[toList.size()];
@@ -38,7 +38,7 @@ public class GetItems {
     
     public static Stage2[] getStage2(Stage1 stage1){
         Stage2[] array;
-        String query="select ?st ?name ?id where{?st rdf:type :Stage2. ?st :name ?name. ?st :id ?id. ?st :hasRegion :"+stage1.getName()+"";
+        String query="select ?st ?name ?id where{?st rdf:type :Stage2. ?st :name ?name. ?st :id ?id. ?st :hasRegion :"+stage1.getName()+".}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Stage2[toList.size()];
@@ -54,7 +54,7 @@ public class GetItems {
     
     public static Province[] getProvince(Stage2 stage2){
         Province[] array;
-        String query="select ?st ?name ?id where{?st rdf:type :Province. ?st :name ?name. ?st :id ?id. ?st :hasStage2 :"+stage2.getName()+"";
+        String query="select ?st ?name ?id where{?st rdf:type :Province. ?st :name ?name. ?st :id ?id. ?st :hasStage2 :"+stage2.getName()+".}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Province[toList.size()];

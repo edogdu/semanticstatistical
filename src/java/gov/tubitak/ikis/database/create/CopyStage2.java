@@ -101,7 +101,7 @@ public class CopyStage2 {
         String IL_BAZINDA_TURKIYE_ORT;//70 provinceTurkeyAvg
         String ENUM_VAS_TIPI;//74 collectType
 
-        File file = new File("C:\\Users\\cem.ozkan\\Documents\\ikis - Sektor Verileri ve Aciklamalari\\duzey2.xls");
+        File file = new File("ikis - Sektor Verileri ve Aciklamalari/duzey2.xls");
         WorkbookSettings ws = new WorkbookSettings();
         Workbook w;
         try {

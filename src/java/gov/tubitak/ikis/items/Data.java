@@ -13,6 +13,24 @@ public class Data {
     private String value;
     private Item belongsTo;
     private Property property;
+    private String sector;
+
+    public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    public Data(String value, Item belongsTo, Property property, String sector) {
+        this.value = value;
+        this.belongsTo = belongsTo;
+        this.property = property;
+        this.sector = sector;
+    }
+    
+    
 
     public Item getBelongsTo() {
         return belongsTo;

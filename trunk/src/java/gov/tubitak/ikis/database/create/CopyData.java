@@ -102,7 +102,7 @@ public class CopyData {
         String IL_BAZINDA_TURKIYE_ORT;//70 provinceTurkeyAvg
         String ENUM_VAS_TIPI;//74 collectType
         for (int i = 1; i < 6; i++) {
-            File file = new File("C:\\Users\\cem.ozkan\\Documents\\ikis - Sektor Verileri ve Aciklamalari\\table_export" + i + ".xls");
+            File file = new File("ikis - Sektor Verileri ve Aciklamalari/table_export" + i + ".xls");
             WorkbookSettings ws = new WorkbookSettings();
             Workbook w;
             try {

@@ -13,12 +13,14 @@
             Semantik İkis
         </ui:define>
         <ui:define name="left">
-            <p:commandButton value="Verileri Getir" update=""/>
+            <h:form>
+               <!-- <p:commandButton value="Verileri Getir" update="data"/>-->
+            </h:form>
             <p:accordionPanel>
                 <p:tab title="Başlık">
                     <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
                         <f:selectItems value="#{PageBean.headers}" var="header" itemLabel="#{header.name}"/>
-                        <p:ajax update="metadata" event="onchange"/>
+                        <p:ajax update="metadata" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Üstveri" id="metadata" >
@@ -30,13 +32,13 @@
                 <p:tab title="Düzey1" id="stage1">
                     <p:selectManyCheckbox value="#{PageBean.selectedStage1}" layout="pageDirection" >
                         <f:selectItems value="#{PageBean.stage1}" var="stage1" itemLabel="#{stage1.name}"/>
-                        <p:ajax update="stage2" event="onchange"/>
+                        <p:ajax update="stage2" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Düzey2" id="stage2">
                     <p:selectManyCheckbox value="#{PageBean.selectedStage2}" layout="pageDirection" >
                         <f:selectItems value="#{PageBean.stage2}" var="stage2" itemLabel="#{stage2.name}"/>
-                        <p:ajax update="province" event="onchange"/>
+                        <p:ajax update="province" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="İl" id="province">

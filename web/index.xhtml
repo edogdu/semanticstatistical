@@ -13,28 +13,54 @@
             Semantik İkis
         </ui:define>
         <ui:define name="left">
+            <p:commandButton value="Verileri Getir" update=""/>
             <p:accordionPanel>
                 <p:tab title="Başlık">
                     <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
                         <f:selectItems value="#{PageBean.headers}" var="header" itemLabel="#{header.name}"/>
+                        <p:ajax update="metadata" event="onchange"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Üstveri" id="metadata" >
-                    
+                    <p:selectManyCheckbox value="#{PageBean.selectedMetadatas}" layout="pageDirection" >
+                        <f:selectItems value="#{PageBean.metadatas}" var="metadata" itemLabel="#{metadata.name}"/>
+                        
+                    </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Düzey1" id="stage1">
-                    
+                    <p:selectManyCheckbox value="#{PageBean.selectedStage1}" layout="pageDirection" >
+                        <f:selectItems value="#{PageBean.stage1}" var="stage1" itemLabel="#{stage1.name}"/>
+                        <p:ajax update="stage2" event="onchange"/>
+                    </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Düzey2" id="stage2">
-                    
+                    <p:selectManyCheckbox value="#{PageBean.selectedStage2}" layout="pageDirection" >
+                        <f:selectItems value="#{PageBean.stage2}" var="stage2" itemLabel="#{stage2.name}"/>
+                        <p:ajax update="province" event="onchange"/>
+                    </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="İl" id="province">
-                    
+                    <p:selectManyCheckbox value="#{PageBean.selectedProvince}" layout="pageDirection" >
+                        <f:selectItems value="#{PageBean.province}" var="province" itemLabel="#{province.name}"/>
+                    </p:selectManyCheckbox>
                 </p:tab>
             </p:accordionPanel>
         </ui:define>
         <ui:define name="content">
-            Semantic İkis
+            <p:dataTable id="data" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data"> 
+                <p:column headerText="Düzey">
+                    #{data.belongsTo.trLabel}
+                </p:column>
+                <p:column headerText="Üstveri">
+                    #{data.property.name}
+                </p:column>
+                <p:column headerText="Baslık">
+                    #{data.property}
+                </p:column>
+                <p:column headerText="Veri">
+                    #{data.value}
+                </p:column>
+            </p:dataTable>
         </ui:define>
     </ui:composition>
 </html>

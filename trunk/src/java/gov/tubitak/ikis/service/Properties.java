@@ -30,7 +30,10 @@ public class Properties {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(next.get("id").toString()), next.get("label").toString(),next.get("label").toString());
+            String test=next.get("id").toString();
+            if(test.contains("^^"))
+                test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
+            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(test), next.get("label").toString(),next.get("label").toString());
             i++;
         }
         return array;
@@ -46,7 +49,10 @@ public class Properties {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(next.get("id").toString()), next.get("label").toString(),next.get("label").toString());
+            String test=next.get("id").toString();
+            if(test.contains("^^"))
+                test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
+            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(test), next.get("label").toString(),next.get("label").toString());
             i++;
         }
         return array;

@@ -22,7 +22,7 @@ import java.lang.String;
 public class Properties {
     public static Property[] getHeaders(){
         Property[] array;
-        String query="select ?pro where{?pro rdf:type owl:ObjectProperty. ?pro :propertyType "+"\"header\""+"}";
+        String query="select ?pro ?label ?id where{?pro rdf:type owl:ObjectProperty. ?pro :propertyType "+"\"header\""+". ?pro rdfs:label ?label. ?pro :id ?id}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Property[toList.size()];
@@ -30,7 +30,7 @@ public class Properties {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Property(next.get("pro").toString(), next.get("pro").toString(), next.get("pro").toString(),next.get("pro").toString());
+            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(next.get("id").toString()), next.get("label").toString(),next.get("label").toString());
             i++;
         }
         return array;
@@ -38,7 +38,7 @@ public class Properties {
     
     public static Property[] getMetadata(String header){
         Property[] array;
-        String query="select ?pro ?label where{?pro rdf:type owl:ObjectProperty. ?pro rdfs:subPropertyOf "+header+". ?pro rdfs:label ?label}";
+        String query="select ?pro ?label where{?pro rdf:type owl:ObjectProperty. ?pro rdfs:subPropertyOf :"+header+". ?pro rdfs:label ?label. ?pro :id ?id}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Property[toList.size()];
@@ -46,7 +46,7 @@ public class Properties {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Property(next.get("pro").toString(), next.get("pro").toString(), next.get("label").toString(),next.get("label").toString());
+            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(next.get("id").toString()), next.get("label").toString(),next.get("label").toString());
             i++;
         }
         return array;

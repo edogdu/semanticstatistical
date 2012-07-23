@@ -11,11 +11,11 @@ package gov.tubitak.ikis.items;
 public class Stage1 implements Item{
 
     private String name;
-    private String id;
+    private int id;
     private String enLabel;
     private String trLabel;
 
-    public Stage1(String name, String id, String enLabel, String trLabel) {
+    public Stage1(String name, int id, String enLabel, String trLabel) {
         this.name = name;
         this.id = id;
         this.enLabel = enLabel;
@@ -33,12 +33,12 @@ public class Stage1 implements Item{
     }
 
     @Override
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

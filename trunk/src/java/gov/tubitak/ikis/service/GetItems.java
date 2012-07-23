@@ -30,7 +30,7 @@ public class GetItems {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Stage1(next.get("st").toString(), next.get("id").toString(), next.get("st").toString(),next.get("st").toString());
+            array[i]=new Stage1(next.get("st").toString(), Integer.parseInt(next.get("id").toString()), next.get("st").toString(),next.get("st").toString());
             i++;
         }
         return array;
@@ -46,7 +46,7 @@ public class GetItems {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Stage2(next.get("st").toString(), next.get("id").toString(), next.get("st").toString(),next.get("st").toString());
+            array[i]=new Stage2(next.get("st").toString(), Integer.parseInt(next.get("id").toString()), next.get("st").toString(),next.get("st").toString());
             i++;
         }
         return array;
@@ -62,7 +62,7 @@ public class GetItems {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Province(next.get("st").toString(), next.get("id").toString(), next.get("st").toString(),next.get("st").toString());
+            array[i]=new Province(next.get("st").toString(), Integer.parseInt(next.get("id").toString()), next.get("st").toString(),next.get("st").toString());
             i++;
         }
         return array;

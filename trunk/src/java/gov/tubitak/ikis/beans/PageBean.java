@@ -11,6 +11,7 @@ import gov.tubitak.ikis.items.Stage2;
 import gov.tubitak.ikis.service.DataFinder;
 import gov.tubitak.ikis.service.GetItems;
 import gov.tubitak.ikis.service.Properties;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -21,7 +22,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name="PageBean")
 @ViewScoped
-public class PageBean {
+public class PageBean implements Serializable{
     
     private Item[] selectedHeaders;
     private Item[] selectedMetadatas;

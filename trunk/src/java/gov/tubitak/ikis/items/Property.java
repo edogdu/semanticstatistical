@@ -11,11 +11,11 @@ package gov.tubitak.ikis.items;
 public class Property implements Item{
     
     private String name;
-    private String id;
+    private int id;
     private String enLabel;
     private String trLabel;
 
-    public Property(String name, String id, String enLabel, String trLabel) {
+    public Property(String name, int id, String enLabel, String trLabel) {
         this.name = name;
         this.id = id;
         this.enLabel = enLabel;
@@ -34,12 +34,12 @@ public class Property implements Item{
     }
 
     @Override
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

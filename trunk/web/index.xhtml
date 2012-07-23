@@ -19,19 +19,13 @@
             <p:accordionPanel multiple="true">
                 <p:tab title="Başlık">
                     <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
-                        <f:selectItem itemLabel="Erkak"/>
-                        <f:selectItem itemLabel="Kadın"/>
-                        <f:selectItem itemLabel="İktisadi Göstergeler "/>
-                        <!--<f:selectItems value="#{PageBean.headers}" var="header" itemLabel="#{header.name}"/>-->
+                        <f:selectItems value="#{PageBean.headers}" var="header" itemLabel="#{header.trLabel}"/>
                         <p:ajax update="metadata" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Üstveri" id="metadata" >
                     <p:selectManyCheckbox value="#{PageBean.selectedMetadatas}" layout="pageDirection" >
-                        <f:selectItem itemLabel="Öğrenci Sayısı"/>
-                        <f:selectItem itemLabel="Lise Öğrenci Sayısı"/>
-                        <f:selectItem itemLabel="Devlet Lise Öğrenci Sayısı"/>
-                        <!--<f:selectItems value="#{PageBean.metadatas}" var="metadata" itemLabel="#{metadata.name}"/>-->
+                        <f:selectItems value="#{PageBean.metadatas}" var="metadata" itemLabel="#{metadata.name}"/>
                         
                     </p:selectManyCheckbox>
                 </p:tab>
@@ -66,7 +60,7 @@
                     #{data.property}
                 </p:column>
                 <p:column headerText="Sektör">
-                    #{data.value}
+                    #{data.sector}
                 </p:column>
                 <p:column headerText="Veri">
                     #{data.value}

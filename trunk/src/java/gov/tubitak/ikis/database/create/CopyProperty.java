@@ -21,6 +21,7 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -118,6 +119,7 @@ public class CopyProperty {
                 String USTVERİENG=convert(sheet.getCell(4, j).getContents());
                 String USTVERİTR=convert(sheet.getCell(2, j).getContents());
                 SEKTOR = convert(sheet.getCell(8, j).getContents()).replaceAll(" ", "");;//1
+                Random rnd=new Random();
                 ResultSet search = Sparql.search("select ?p where{?p rdf:type owl:ObjectProperty. ?p rdfs:label \"" + USTVERİENG+"@en" + "\".}");
                 List<QuerySolution> toList = ResultSetFormatter.toList(search);
                 if (toList.isEmpty()) {
@@ -129,6 +131,7 @@ public class CopyProperty {
                             Sparql.insertLiteral(TUIK + BASLIK_ADI, RDFS + "label", BASLIK_ADI);
                             Sparql.insertLiteral(TUIK + BASLIK_ADI, RDFS + "label", BASLIKTR);
                             Sparql.insertLiteral(TUIK + BASLIK_ADI, TUIK + "propertyType", "header");
+                            Sparql.insertLiteral(TUIK + BASLIK_ADI, TUIK + "id", rnd.nextInt(100000));
                         }
                         Sparql.insertProperty(TUIK + USTVERI_ADI, RDF + "type", OWL + "ObjectProperty");
                         Sparql.insertLiteral(TUIK + USTVERI_ADI, RDFS + "label", USTVERİENG+"@en");
@@ -144,6 +147,7 @@ public class CopyProperty {
                         Sparql.insertProperty(TUIK + USTVERI_ADI, RDFS + "subPropertyOf", TUIK + BASLIK_ADI);
                         Sparql.insertLiteral(TUIK + USTVERI_ADI, RDFS + "comment", "Baslık adı: " + BASLIK_ADI + " Ustveri: " + USTVERI_ADI);
                         Sparql.insertLiteral(TUIK + USTVERI_ADI, TUIK + "propertyType", "metadata");
+                        Sparql.insertLiteral(TUIK + USTVERI_ADI, TUIK + "id", rnd.nextInt(100000));
                     } catch (DatabaseConnectException ex) {
                         Logger.getLogger(CopyProperty.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (DatabaseWriteOrDeleteException ex) {

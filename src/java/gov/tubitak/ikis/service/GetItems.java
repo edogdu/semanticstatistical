@@ -30,7 +30,10 @@ public class GetItems {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Stage1(next.get("st").toString(), Integer.parseInt(next.get("id").toString()), next.get("st").toString(),next.get("st").toString());
+            String test=next.get("id").toString();
+            if(test.contains("^^"))
+                test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
+            array[i]=new Stage1(next.get("st").toString(), Integer.parseInt(test), next.get("st").toString(),next.get("st").toString());
             i++;
         }
         return array;
@@ -46,7 +49,10 @@ public class GetItems {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Stage2(next.get("st").toString(), Integer.parseInt(next.get("id").toString()), next.get("st").toString(),next.get("st").toString());
+            String test=next.get("id").toString();
+            if(test.contains("^^"))
+                test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
+            array[i]=new Stage2(next.get("st").toString(), Integer.parseInt(test), next.get("st").toString(),next.get("st").toString());
             i++;
         }
         return array;
@@ -62,7 +68,10 @@ public class GetItems {
         int i=0;
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
-            array[i]=new Province(next.get("st").toString(), Integer.parseInt(next.get("id").toString()), next.get("st").toString(),next.get("st").toString());
+            String test=next.get("id").toString();
+            if(test.contains("^^"))
+                test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
+            array[i]=new Province(next.get("st").toString(), Integer.parseInt(test), next.get("st").toString(),next.get("st").toString());
             i++;
         }
         return array;

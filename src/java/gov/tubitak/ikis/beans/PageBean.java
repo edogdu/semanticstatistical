@@ -103,6 +103,6 @@ public class PageBean implements Serializable{
     }
     
     public Data[] getDatas(){
-        return DataFinder.getdata(); //TODO Düzgün parametre ver
+        return DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince);
     }
 }

@@ -97,7 +97,7 @@ public class PageBean implements Serializable{
     }
     
     public Property[] getMetadatas(){
-        if(selectedHeaders[0]!=null)
+        if(selectedHeaders[0]!=null||selectedMetadatas.length!=0)
             return Properties.getMetadata(selectedHeaders);
         return  new Property[1];
     }

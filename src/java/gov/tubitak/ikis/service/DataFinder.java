@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class DataFinder {
     public static Data[] getdata(String[] header, String[] metadata, String[] stage1, String[] stage2, String[] city){
-        Data[] array;
-        String query="select ?value ?sector ?stage where{";//UNION fln kullanman lazım
+        Data[] array = null;
+        String query="select ?v ?sector ?stage where{";//UNION fln kullanman lazım
         if(stage1.length>0 && stage2.length>0&& metadata.length>0){
             query+="<"+stage2[0]+"> <"+metadata[0]+"> ?value.";
         }
@@ -34,9 +34,10 @@ public class DataFinder {
             
         }
         if(metadata.length>0)
-            query+="?value <"+metadata[0]+"> ?st. ?st rdfs:label ?stage. ";
-        
-        query+="?value :hasSector ?sector. }";
+            
+        if(stage1.length>0 && stage2.length>0&& metadata.length>0){
+        query+="?value <"+metadata[0]+"> ?st. ?st rdfs:label ?stage. ";    
+        query+="?value :hasSector ?sector. ?value :value ?v.}";
         
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
@@ -46,12 +47,22 @@ public class DataFinder {
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
             
-            array[i]=new Data(next.get("value").toString(), next.get("sector").toString(), new Property(query, i, query, query), next.get("value").toString());
+            array[i]=new Data(next.get("v").toString(), next.get("stage").toString(), new Property(metadata[0], i, metadata[0], metadata[0]), next.get("sector").toString().substring(next.get("sector").toString().indexOf("#")+1));
             i++;
+        }
         }
         return array;
         
     }
-
+    public static String sectorFinder(String sector){
+        String query="select ?pro ?label ?id where{<"+sector+"> rdfs:label ?label. <"+sector+"> :id ?id.}";
+        ResultSet search = Sparql.search(query);
+        List<QuerySolution> toList = ResultSetFormatter.toList(search);
+        if(!toList.isEmpty()){
+            QuerySolution get = toList.get(0);
+             return get.get("label").toString();
+        }
+        return ""; 
+    }
     
 }

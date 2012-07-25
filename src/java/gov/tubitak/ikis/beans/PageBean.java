@@ -11,6 +11,7 @@ import gov.tubitak.ikis.service.Properties;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -18,7 +19,7 @@ import javax.faces.bean.ViewScoped;
  * @author cem.ozkan
  */
 @ManagedBean(name="PageBean")
-@ViewScoped
+@SessionScoped
 public class PageBean implements Serializable{
     
     private String[] selectedHeaders;
@@ -85,20 +86,33 @@ public class PageBean implements Serializable{
     }
     
     public Stage2[] getStage2(){
+        try{
         if(selectedStage1[0]!=null)
             return GetItems.getStage2(selectedStage1);
+        }catch(Exception ex){
+            return  new Stage2[1];
+        }
         return  new Stage2[1];
     }
     
     public Province[] getProvince(){
+        try{
         if(selectedStage2[0]!=null)
             return GetItems.getProvince(selectedStage2);
+        }catch(Exception ex){
+            return  new Province[1];
+        }
         return  new Province[1];
     }
     
     public Property[] getMetadatas(){
-        if(selectedHeaders[0]!=null||selectedMetadatas.length!=0)
+        try{
+        if(selectedMetadatas==null||selectedMetadatas.length!=0||selectedHeaders[0]!=null)
             return Properties.getMetadata(selectedHeaders);
+        }
+        catch(Exception ex){
+            return new Property[1];
+        }
         return  new Property[1];
     }
     

@@ -12,9 +12,9 @@ import gov.tubitak.ikis.items.Item;
  * @author cem.ozkan
  */
 public class DataFinder {
-    public static Data[] getdata(){
+    public static Data[] getdata(String[] header, String[] metadata, String[] stage1, String[] stage2, String[] city){
         Data[] array=null;
-        String query="";//UNION fln kullanman lazım
+        String query="select ?value ?sector where{}";//UNION fln kullanman lazım
         return array;
         
     }

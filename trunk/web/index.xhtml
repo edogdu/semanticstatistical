@@ -19,31 +19,31 @@
             <p:accordionPanel multiple="true">
                 <p:tab title="Başlık">
                     <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
-                        <f:selectItems value="#{PageBean.headers}" var="header" itemLabel="#{header.trLabel}" itemDescription="#{header.trLabel}"/>
+                        <f:selectItems var="h" itemLabel="#{h.trLabel}" itemValue="#{h.name}" value="#{PageBean.headers}"/>
                         <p:ajax update="metadata" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
-                <p:tab title="Üstveri" id="metadata" >
-                    <p:selectManyCheckbox value="#{PageBean.selectedMetadatas}" layout="pageDirection" >
-                        <f:selectItems value="#{PageBean.metadatas}" var="metadata" itemLabel="#{metadata.name}"/>
+                <p:tab title="Üstveri" >
+                    <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" >
+                        <f:selectItems var="metadata" itemLabel="#{metadata.trLabel}" itemValue="#{metadata.name}" value="#{PageBean.metadatas}" />
                         
                     </p:selectManyCheckbox>
                 </p:tab>
-                <p:tab title="Düzey1" id="stage1">
-                    <p:selectManyCheckbox value="#{PageBean.selectedStage1}" layout="pageDirection" >
-                        <f:selectItems value="#{PageBean.stage1}" var="stage1" itemLabel="#{stage1.trLabel}"/>
+                <p:tab title="Düzey1">
+                    <p:selectManyCheckbox id="stage1" value="#{PageBean.selectedStage1}" layout="pageDirection" >
+                        <f:selectItems var="st" itemLabel="#{st.trLabel}" itemValue="#{st.name}" value="#{PageBean.stage1}"/>
                         <p:ajax update="stage2" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
-                <p:tab title="Düzey2" id="stage2">
-                    <p:selectManyCheckbox value="#{PageBean.selectedStage2}" layout="pageDirection" >
-                        <f:selectItems value="#{PageBean.stage2}" var="stage2" itemLabel="#{stage2.name}"/>
+                <p:tab title="Düzey2" >
+                    <p:selectManyCheckbox id="stage2" value="#{PageBean.selectedStage2}" layout="pageDirection" >
+                        <f:selectItems var="st" itemLabel="#{st.trLabel}" itemValue="#{st.name}" value="#{PageBean.stage2}"/>
                         <p:ajax update="province" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
-                <p:tab title="İl" id="province">
-                    <p:selectManyCheckbox value="#{PageBean.selectedProvince}" layout="pageDirection" >
-                        <f:selectItems value="#{PageBean.province}" var="province" itemLabel="#{province.name}"/>
+                <p:tab title="İl">
+                    <p:selectManyCheckbox id="province" value="#{PageBean.selectedProvince}" layout="pageDirection" >
+                        <f:selectItems var="pr" itemLabel="#{pr.trLabel}" itemValue="#{pr.name}" value="#{PageBean.province}"/>
                     </p:selectManyCheckbox>
                 </p:tab>
             </p:accordionPanel>

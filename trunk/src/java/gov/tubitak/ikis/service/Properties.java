@@ -22,7 +22,7 @@ import java.lang.String;
 public class Properties {
     public static Property[] getHeaders(){
         Property[] array;
-        String query="select ?pro ?label ?id where{?pro rdf:type owl:ObjectProperty. ?pro :propertyType "+"\"header\""+". ?pro rdfs:label ?label. ?pro :id ?id}";
+        String query="select ?pro ?label ?id where{?pro rdf:type owl:ObjectProperty. ?pro :propertyType "+"\"header\""+". ?pro rdfs:label ?label. ?pro :id ?id.  FILTER regex(?label, \"TR\", \"i\")}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Property[toList.size()];
@@ -41,7 +41,7 @@ public class Properties {
     
     public static Property[] getMetadata(String header){
         Property[] array;
-        String query="select ?pro ?label where{?pro rdf:type owl:ObjectProperty. ?pro rdfs:subPropertyOf :"+header+". ?pro rdfs:label ?label. ?pro :id ?id}";
+        String query="select ?pro ?label ?id where{?pro rdf:type owl:ObjectProperty. ?pro rdfs:subPropertyOf <"+header+">. ?pro rdfs:label ?label. ?pro :id ?id.}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Property[toList.size()];

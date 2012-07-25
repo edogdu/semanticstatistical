@@ -8,7 +8,7 @@ package gov.tubitak.ikis.items;
  *
  * @author cem.ozkan
  */
-public class Property implements Item{
+public class Property{
     
     private String name;
     private int id;
@@ -23,42 +23,42 @@ public class Property implements Item{
     }
 
     
-    @Override
+    
     public String getEnLabel() {
         return enLabel;
     }
 
-    @Override
+    
     public void setEnLabel(String enLabel) {
         this.enLabel = enLabel;
     }
 
-    @Override
+    
     public int getId() {
         return id;
     }
 
-    @Override
+    
     public void setId(int id) {
         this.id = id;
     }
 
-    @Override
+    
     public String getName() {
         return name;
     }
 
-    @Override
+    
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
+    
     public String getTrLabel() {
         return trLabel;
     }
 
-    @Override
+    
     public void setTrLabel(String trLabel) {
         this.trLabel = trLabel;
     }

@@ -9,7 +9,7 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 
 /**
  *
- * @author cem.ozkan
+ * @author cem.ozkan"http://www.tuik.com/tuik#tr2batimarmara"
  */
 public class Test {
 
@@ -18,7 +18,8 @@ public class Test {
      */
     public static void main(String[] args) {
 //        String query="select ?pro where{?pro rdf:type owl:ObjectProperty. ?pro :propertyType "+"\"header\""+"}";
-        String query="select ?pro where{?pro rdf:type owl:ObjectProperty. ?pro rdfs:subPropertyOf "+"<http://www.tuik.com/tuik#economicIndicators>"+".}";
+//        String query="select ?st ?id ?label where{?st rdf:type :Stage2. ?st :id ?id. ?st rdfs:label ?label. ?st :hasRegion <"+"http://www.tuik.com/tuik#tr2batimarmara"+">.}";
+        String query="select ?st ?id ?label where{?st rdf:type :City. ?st :id ?id. ?st rdfs:label ?label. ?st :hasStage2 <"+"http://www.tuik.com/tuik#tr61antalya"+">.}";
         ResultSet search = Sparql.search(query);
         ResultSetFormatter.out(search);
     }

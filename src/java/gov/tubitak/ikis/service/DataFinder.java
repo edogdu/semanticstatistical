@@ -12,7 +12,7 @@ import gov.tubitak.ikis.items.Item;
  * @author cem.ozkan
  */
 public class DataFinder {
-    public static Data[] getdata(Item[] request){
+    public static Data[] getdata(){
         Data[] array=null;
         String query="";//UNION fln kullanman lazım
         return array;

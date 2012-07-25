@@ -22,7 +22,7 @@ import java.util.List;
 public class GetItems {
     public static Stage1[] getStage1(){
         Stage1[] array;
-        String query="select ?st ?id where{?st rdf:type :Stage1. ?st :id ?id.}";
+        String query="select ?st ?id ?label where{?st rdf:type :Stage1. ?st :id ?id. ?st rdfs:label ?label}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Stage1[toList.size()];
@@ -31,15 +31,15 @@ public class GetItems {
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
             String test=next.get("id").toString();
-            array[i]=new Stage1(next.get("st").toString(), test, next.get("st").toString(),next.get("st").toString());
+            array[i]=new Stage1(next.get("st").toString(), test, next.get("label").toString(),next.get("label").toString());
             i++;
         }
         return array;
     }
     
-    public static Stage2[] getStage2(Stage1 stage1){
+    public static Stage2[] getStage2(String stage1){
         Stage2[] array;
-        String query="select ?st ?name ?id where{?st rdf:type :Stage2. ?st :name ?name. ?st :id ?id. ?st :hasRegion :"+stage1.getName()+".}";
+        String query="select ?st ?id ?label where{?st rdf:type :Stage2. ?st :id ?id. ?st rdfs:label ?label. ?st :hasRegion <"+stage1+">.}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Stage2[toList.size()];
@@ -48,15 +48,15 @@ public class GetItems {
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
             String test=next.get("id").toString();
-            array[i]=new Stage2(next.get("st").toString(), test, next.get("st").toString(),next.get("st").toString());
+            array[i]=new Stage2(next.get("st").toString(), test, next.get("label").toString(),next.get("label").toString());
             i++;
         }
         return array;
     }
     
-    public static Province[] getProvince(Stage2 stage2){
+    public static Province[] getProvince(String stage2){
         Province[] array;
-        String query="select ?st ?name ?id where{?st rdf:type :Province. ?st :name ?name. ?st :id ?id. ?st :hasStage2 :"+stage2.getName()+".}";
+        String query="select ?st ?id ?label where{?st rdf:type :City. ?st :id ?id. ?st rdfs:label ?label. ?st :hasStage2 <"+stage2+">.}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Province[toList.size()];
@@ -65,7 +65,7 @@ public class GetItems {
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
             String test=next.get("id").toString();
-            array[i]=new Province(next.get("st").toString(), test, next.get("st").toString(),next.get("st").toString());
+            array[i]=new Province(next.get("st").toString(), test, next.get("label").toString(),next.get("label").toString());
             i++;
         }
         return array;

@@ -21,58 +21,58 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class PageBean implements Serializable{
     
-    private Property[] selectedHeaders;
-    private Property[] selectedMetadatas;
-    private Stage1[] selectedStage1;
-    private Stage2[] selectedStage2;
-    private Province[] selectedProvince;
+    private String[] selectedHeaders;
+    private String[] selectedMetadatas;
+    private String[] selectedStage1;
+    private String[] selectedStage2;
+    private String[] selectedProvince;
 
     public PageBean() {
-        selectedHeaders =new Property[1];
-        selectedMetadatas =new Property[1];
-        selectedProvince =new Province[1];
-        selectedStage1=new Stage1[1];
-        selectedStage2=new Stage2[1];
+        selectedHeaders =new String[1];
+        selectedMetadatas =new String[1];
+        selectedProvince =new String[1];
+        selectedStage1=new String[1];
+        selectedStage2=new String[1];
     }
 
     
-    public Item[] getSelectedMetadatas() {
+    public String[] getSelectedMetadatas() {
         return selectedMetadatas;
     }
 
-    public void setSelectedMetadatas(Property[] selectedMetadatas) {
+    public void setSelectedMetadatas(String[] selectedMetadatas) {
         this.selectedMetadatas = selectedMetadatas;
     }
 
-    public Province[] getSelectedProvince() {
+    public String[] getSelectedProvince() {
         return selectedProvince;
     }
 
-    public void setSelectedProvince(Province[] selectedProvince) {
+    public void setSelectedProvince(String[] selectedProvince) {
         this.selectedProvince = selectedProvince;
     }
 
-    public Stage1[] getSelectedStage1() {
+    public String[] getSelectedStage1() {
         return selectedStage1;
     }
 
-    public void setSelectedStage1(Stage1[] selectedStage1) {
+    public void setSelectedStage1(String[] selectedStage1) {
         this.selectedStage1 = selectedStage1;
     }
 
-    public Stage2[] getSelectedStage2() {
+    public String[] getSelectedStage2() {
         return selectedStage2;
     }
 
-    public void setSelectedStage2(Stage2[] selectedStage2) {
+    public void setSelectedStage2(String[] selectedStage2) {
         this.selectedStage2 = selectedStage2;
     }
 
-    public void setSelectedHeaders(Property[] selectedHeaders) {
+    public void setSelectedHeaders(String[] selectedHeaders) {
         this.selectedHeaders = selectedHeaders;
     }
 
-    public Property[] getSelectedHeaders() {
+    public String[] getSelectedHeaders() {
         return selectedHeaders;
     }
     
@@ -96,13 +96,13 @@ public class PageBean implements Serializable{
         return  new Province[1];
     }
     
-    public Item[] getMetadatas(){
+    public Property[] getMetadatas(){
         if(selectedHeaders[0]!=null)
-            return Properties.getMetadata(selectedHeaders[0].getName());
-        return  new Item[1];
+            return Properties.getMetadata(selectedHeaders[0]);
+        return  new Property[1];
     }
     
     public Data[] getDatas(){
-        return DataFinder.getdata(selectedHeaders); //TODO Düzgün parametre ver
+        return DataFinder.getdata(); //TODO Düzgün parametre ver
     }
 }

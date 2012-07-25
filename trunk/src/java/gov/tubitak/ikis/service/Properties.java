@@ -70,7 +70,7 @@ public class Properties {
     public static Property getPropertyByName(String name){
         name=name.substring(name.indexOf("#"));
         Property pro = null;
-        String query="select ?pro ?label ?id where{?pro rdf:type owl:ObjectProperty. ?pro :name <"+name+">. ?pro rdfs:label ?label. ?pro :id ?id.}";
+        String query="select ?pro ?label ?id where{<"+name+"> rdfs:label ?label. <"+name+"> :id ?id.}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         QuerySolution get = toList.get(0);
@@ -78,7 +78,7 @@ public class Properties {
             String test=get.get("id").toString();
             if(test.contains("^^"))
                 test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
-             pro= new Property(get.get("pro").toString(),Integer.parseInt(test), get.get("label").toString(), get.get("label").toString());
+             pro= new Property(name,Integer.parseInt(test), get.get("label").toString(), get.get("label").toString());
         }
         return pro;   
     }

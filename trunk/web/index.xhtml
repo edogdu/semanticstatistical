@@ -14,8 +14,7 @@
         </ui:define>
         <ui:define name="left">
             <h:form>
-                <p:commandButton value="Verileri Getir"  ajax="false"/>
-            </h:form>
+                <p:commandButton value="Verileri Getir" ajax="false"/>
             <p:accordionPanel multiple="true">
                 <p:tab title="Başlık">
                     <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
@@ -24,9 +23,8 @@
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Üstveri" >
-                    <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" >
+                    <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" immediate="true">
                         <f:selectItems var="metadata" itemLabel="#{metadata.trLabel}" itemValue="#{metadata.name}" value="#{PageBean.metadatas}" />
-                        <p:ajax update="metadata" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Düzey1">
@@ -44,13 +42,14 @@
                 <p:tab title="İl">
                     <p:selectManyCheckbox id="province" value="#{PageBean.selectedProvince}" layout="pageDirection" >
                         <f:selectItems var="pr" itemLabel="#{pr.trLabel}" itemValue="#{pr.name}" value="#{PageBean.province}"/>
-                        <p:ajax update="province" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
             </p:accordionPanel>
+                
+            </h:form>
         </ui:define>
-        <ui:define name="content">
-            <p:dataTable id="data" emptyMessage="Kayıt Bulunamadı" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data"> 
+        <ui:define id="data" name="content">
+            <p:dataTable  emptyMessage="Kayıt Bulunamadı" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data"> 
                 <p:column headerText="Düzey">
                     #{data.belongsTo}
                 </p:column>

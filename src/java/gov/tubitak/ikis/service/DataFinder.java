@@ -33,7 +33,7 @@ public class DataFinder {
             query+="{?loc rdf:type :Stage1} UNION {?loc rdf:type :Stage2}. ?loc  <"+metadata[0]+"> ?value.";
             
         }
-        query+="?value :hasSector ?sec. ?sec :name ?sector. ?value :value ?value. ?value <"+metadata[0]+"> ?st. ?st :name ?stage.}";
+        query+="?value :hasSector ?sec. ?sec :name ?sector. ?value <"+metadata[0]+"> ?st. ?st :name ?stage.}";
         
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);

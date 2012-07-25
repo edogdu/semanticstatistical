@@ -26,7 +26,7 @@
                 <p:tab title="Üstveri" >
                     <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" >
                         <f:selectItems var="metadata" itemLabel="#{metadata.trLabel}" itemValue="#{metadata.name}" value="#{PageBean.metadatas}" />
-                        
+                        <p:ajax update="metadata" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Düzey1">
@@ -44,6 +44,7 @@
                 <p:tab title="İl">
                     <p:selectManyCheckbox id="province" value="#{PageBean.selectedProvince}" layout="pageDirection" >
                         <f:selectItems var="pr" itemLabel="#{pr.trLabel}" itemValue="#{pr.name}" value="#{PageBean.province}"/>
+                        <p:ajax update="province" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
             </p:accordionPanel>
@@ -51,7 +52,7 @@
         <ui:define name="content">
             <p:dataTable id="data" emptyMessage="Kayıt Bulunamadı" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data"> 
                 <p:column headerText="Düzey">
-                    #{data.belongsTo.trLabel}
+                    #{data.belongsTo}
                 </p:column>
                 <p:column headerText="Üstveri">
                     #{data.property.name}

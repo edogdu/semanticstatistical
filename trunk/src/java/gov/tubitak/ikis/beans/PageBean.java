@@ -86,19 +86,19 @@ public class PageBean implements Serializable{
     
     public Stage2[] getStage2(){
         if(selectedStage1[0]!=null)
-            return GetItems.getStage2(selectedStage1[0]);
+            return GetItems.getStage2(selectedStage1);
         return  new Stage2[1];
     }
     
     public Province[] getProvince(){
         if(selectedStage2[0]!=null)
-            return GetItems.getProvince(selectedStage2[0]);
+            return GetItems.getProvince(selectedStage2);
         return  new Province[1];
     }
     
     public Property[] getMetadatas(){
         if(selectedHeaders[0]!=null)
-            return Properties.getMetadata(selectedHeaders[0]);
+            return Properties.getMetadata(selectedHeaders);
         return  new Property[1];
     }
     

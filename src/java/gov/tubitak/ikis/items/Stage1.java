@@ -8,7 +8,7 @@ package gov.tubitak.ikis.items;
  *
  * @author cem.ozkan
  */
-public class Stage1{
+public class Stage1 {
 
     private String name;
     private String id;

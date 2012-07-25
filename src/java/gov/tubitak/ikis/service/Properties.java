@@ -39,9 +39,18 @@ public class Properties {
         return array;
     }
     
-    public static Property[] getMetadata(String header){
+    public static Property[] getMetadata(String[] header){
         Property[] array;
-        String query="select ?pro ?label ?id where{?pro rdf:type owl:ObjectProperty. ?pro rdfs:subPropertyOf <"+header+">. ?pro rdfs:label ?label. ?pro :id ?id.}";
+        String query="select ?pro ?label ?id where{?pro rdf:type owl:ObjectProperty.";
+        for (int i = 0; i < header.length; i++) {
+            if(i!=header.length-1)
+                query+=" {?pro rdfs:subPropertyOf <"+header[i]+">} UNION ";
+            if(i==header.length-1)
+                query+=" {?pro rdfs:subPropertyOf <"+header[i]+">}. ";
+                
+        }
+        
+         query+="?pro rdfs:label ?label. ?pro :id ?id.}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Property[toList.size()];
@@ -56,5 +65,21 @@ public class Properties {
             i++;
         }
         return array;
+    }
+    
+    public static Property getPropertyByName(String name){
+        name=name.substring(name.indexOf("#"));
+        Property pro = null;
+        String query="select ?pro ?label ?id where{?pro rdf:type owl:ObjectProperty. ?pro :name <"+name+">. ?pro rdfs:label ?label. ?pro :id ?id.}";
+        ResultSet search = Sparql.search(query);
+        List<QuerySolution> toList = ResultSetFormatter.toList(search);
+        QuerySolution get = toList.get(0);
+        if(!toList.isEmpty()){
+            String test=get.get("id").toString();
+            if(test.contains("^^"))
+                test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
+             pro= new Property(get.get("pro").toString(),Integer.parseInt(test), get.get("label").toString(), get.get("label").toString());
+        }
+        return pro;   
     }
 }

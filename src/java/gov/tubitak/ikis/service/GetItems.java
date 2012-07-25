@@ -37,9 +37,16 @@ public class GetItems {
         return array;
     }
     
-    public static Stage2[] getStage2(String stage1){
+    public static Stage2[] getStage2(String[] stage1){
         Stage2[] array;
-        String query="select ?st ?id ?label where{?st rdf:type :Stage2. ?st :id ?id. ?st rdfs:label ?label. ?st :hasRegion <"+stage1+">.}";
+        String query="select ?st ?id ?label where{?st rdf:type :Stage2. ?st :id ?id. ?st rdfs:label ?label. ";
+        for (int i = 0; i < stage1.length; i++) {
+            if(i!=stage1.length-1)
+                query+=" {?st :hasRegion <"+stage1[i]+">} UNION ";
+            if(i==stage1.length-1)
+                query+=" {?st :hasRegion <"+stage1[i]+">}.}";
+                
+        }
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Stage2[toList.size()];
@@ -54,9 +61,16 @@ public class GetItems {
         return array;
     }
     
-    public static Province[] getProvince(String stage2){
+    public static Province[] getProvince(String[] stage2){
         Province[] array;
-        String query="select ?st ?id ?label where{?st rdf:type :City. ?st :id ?id. ?st rdfs:label ?label. ?st :hasStage2 <"+stage2+">.}";
+        String query="select ?st ?id ?label where{?st rdf:type :City. ?st :id ?id. ?st rdfs:label ?label.";
+        for (int i = 0; i < stage2.length; i++) {
+            if(i!=stage2.length-1)
+                query+=" {?st :hasStage2 <"+stage2[i]+">} UNION ";
+            if(i==stage2.length-1)
+                query+=" {?st :hasStage2 <"+stage2[i]+">}.}";
+                
+        }
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Province[toList.size()];

@@ -11,7 +11,7 @@ package gov.tubitak.ikis.items;
 public class Data {
     
     private String value;
-    private Item belongsTo;
+    private String belongsTo;
     private Property property;
     private String sector;
 
@@ -23,7 +23,7 @@ public class Data {
         this.sector = sector;
     }
 
-    public Data(String value, Item belongsTo, Property property, String sector) {
+    public Data(String value, String belongsTo, Property property, String sector) {
         this.value = value;
         this.belongsTo = belongsTo;
         this.property = property;
@@ -32,11 +32,11 @@ public class Data {
     
     
 
-    public Item getBelongsTo() {
+    public String getBelongsTo() {
         return belongsTo;
     }
 
-    public void setBelongsTo(Item belongsTo) {
+    public void setBelongsTo(String belongsTo) {
         this.belongsTo = belongsTo;
     }
 

@@ -27,13 +27,15 @@ public class PageBean implements Serializable{
     private String[] selectedStage1;
     private String[] selectedStage2;
     private String[] selectedProvince;
+    private String[] selectedSector;
 
     public PageBean() {
         selectedHeaders =new String[1];
-        selectedMetadatas =new String[1];
-        selectedProvince =new String[1];
-        selectedStage1=new String[1];
-        selectedStage2=new String[1];
+        selectedMetadatas =null;
+        selectedProvince =null;
+        selectedStage1=null;
+        selectedStage2=null;
+        selectedSector=null;
     }
 
     
@@ -80,14 +82,26 @@ public class PageBean implements Serializable{
     public Property[] getHeaders(){
         return Properties.getHeaders();
     }
+
+    public String[] getSelectedSector() {
+        return selectedSector;
+    }
+
+    public void setSelectedSector(String[] selectedSector) {
+        this.selectedSector = selectedSector;
+    }
     
     public Stage1[] getStage1(){
         return GetItems.getStage1();
     }
     
+    public Sector[] getSectors(){
+        return Properties.getSector();
+    }
+    
     public Stage2[] getStage2(){
         try{
-        if(selectedStage1[0]!=null)
+        if(selectedStage1!=null)
             return GetItems.getStage2(selectedStage1);
         }catch(Exception ex){
             return  new Stage2[1];
@@ -97,7 +111,7 @@ public class PageBean implements Serializable{
     
     public Province[] getProvince(){
         try{
-        if(selectedStage2[0]!=null)
+        if(selectedStage2!=null)
             return GetItems.getProvince(selectedStage2);
         }catch(Exception ex){
             return  new Province[1];

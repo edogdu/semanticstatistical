@@ -24,13 +24,13 @@ public class CreateOwl {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        CreateDatabase.main(args);
-        CopySector.main(args);
-        CopyProperty.main(args);
+//        CreateDatabase.main(args);
+//        CopySector.main(args);
+//        CopyProperty.main(args);
         CopyProvince.main(args);
         CopyStage1.main(args);
         CopyStage2.main(args);
-        CopyEnterprise.main(args);
+//        CopyEnterprise.main(args);
         CopyData.main(args);
         
         StoreDesc str = new StoreDesc("layout2/index", "mysql");

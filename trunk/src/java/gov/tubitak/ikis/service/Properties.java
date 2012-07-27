@@ -9,6 +9,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import gov.tubitak.ikis.database.Sparql;
 import gov.tubitak.ikis.items.Property;
+import gov.tubitak.ikis.items.Sector;
 import java.util.Iterator;
 import java.util.List;
 import java.lang.String;
@@ -81,5 +82,21 @@ public class Properties {
              pro= new Property(name,Integer.parseInt(test), get.get("label").toString(), get.get("label").toString());
         }
         return pro;   
+    }
+    
+    public static Sector[] getSector(){
+        Sector[] array;
+        String query="select ?pro ?name ?id where{?pro rdf:type :Sector. ?pro rdfs:label ?name.}";
+        ResultSet search = Sparql.search(query);
+        List<QuerySolution> toList = ResultSetFormatter.toList(search);
+        array=new Sector[toList.size()];
+        Iterator<QuerySolution> iterator = toList.iterator();
+        int i=0;
+        while (iterator.hasNext()) {
+            QuerySolution next = iterator.next();
+            array[i]=new Sector(next.get("pro").toString(), next.get("name").toString());
+            i++;
+        }
+        return array;
     }
 }

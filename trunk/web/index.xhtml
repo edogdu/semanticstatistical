@@ -7,6 +7,12 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <script>
+            function open(){
+                acc.unselect(0);
+                acc.select(1);
+            }
+        </script>
     </h:head>
     <ui:composition template="ikisTemplate.xhtml">
         <ui:define name="top">
@@ -15,16 +21,17 @@
         <ui:define name="left">
             <h:form>
                 <p:commandButton value="Verileri Getir" ajax="false"/>
-            <p:accordionPanel multiple="true">
+                <p:accordionPanel multiple="true" widgetVar="acc">
                 <p:tab title="Başlık">
                     <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
                         <f:selectItems var="h" itemLabel="#{h.trLabel}" itemValue="#{h.name}" value="#{PageBean.headers}"/>
-                        <p:ajax update="metadata" event="change"/>
+                        <p:ajax update="metadata" event="change" />
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Üstveri" >
                     <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" immediate="true">
                         <f:selectItems var="metadata" itemLabel="#{metadata.trLabel}" itemValue="#{metadata.name}" value="#{PageBean.metadatas}" />
+                        <p:ajax update="metadata" event="change" />
                     </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Düzey1">
@@ -44,6 +51,12 @@
                         <f:selectItems var="pr" itemLabel="#{pr.trLabel}" itemValue="#{pr.name}" value="#{PageBean.province}"/>
                     </p:selectManyCheckbox>
                 </p:tab>
+                    
+                <p:tab title="Sektör" >
+                    <p:selectManyCheckbox id="sector" value="#{PageBean.selectedSector}" layout="pageDirection" immediate="true">
+                        <f:selectItems var="s" itemLabel="#{s.enLabel}" itemValue="#{s.name}" value="#{PageBean.sectors}" />
+                    </p:selectManyCheckbox>
+                </p:tab>
             </p:accordionPanel>
                 
             </h:form>
@@ -57,10 +70,19 @@
                     #{data.property.name}
                 </p:column>
                 <p:column headerText="Baslık">
-                    #{data.property}
+                    #{data.header}
                 </p:column>
                 <p:column headerText="Sektör">
                     #{data.sector}
+                </p:column>
+                <p:column headerText="Yıl">
+                    #{data.year}
+                </p:column>
+                <p:column headerText="Dönem">
+                    #{data.period}
+                </p:column>
+                <p:column headerText="Kaynak">
+                    #{data.resource}
                 </p:column>
                 <p:column headerText="Veri">
                     #{data.value}

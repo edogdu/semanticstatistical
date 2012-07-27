@@ -111,7 +111,7 @@ public class CopySector {
                 try {
                     Sparql.insertProperty(TUIK + SEKTOR.toLowerCase(), RDF + "type", TUIK + "Sector");
                     Sparql.insertLiteral(TUIK + SEKTOR.toLowerCase(), TUIK + "id", SEKTOR_ID);
-                    Sparql.insertLiteral(TUIK + SEKTOR.toLowerCase(), RDFS + "label", SEKTOR);
+//                    Sparql.insertLiteral(TUIK + SEKTOR.toLowerCase(), RDFS + "label", SEKTOR);
                     Sparql.insertLiteral(TUIK + SEKTOR.toLowerCase(), RDFS + "label", SEKTORTR);
                 } catch (DatabaseConnectException ex) {
                     Logger.getLogger(CopyProvince.class.getName()).log(Level.SEVERE, null, ex);

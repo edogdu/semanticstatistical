@@ -14,6 +14,45 @@ public class Data {
     private String belongsTo;
     private Property property;
     private String sector;
+    private String header;
+    private String year;
+    private String period;
+    private String resource;
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+    
+    
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+    
 
     public String getSector() {
         return sector;
@@ -23,11 +62,15 @@ public class Data {
         this.sector = sector;
     }
 
-    public Data(String value, String belongsTo, Property property, String sector) {
+    public Data(String value, String belongsTo, Property property, String sector,String header,String year, String period,String resource) {
         this.value = value;
         this.belongsTo = belongsTo;
         this.property = property;
         this.sector = sector;
+        this.header = header;
+        this.year = year;
+        this.period = period;
+        this.resource = resource;
     }
     
     

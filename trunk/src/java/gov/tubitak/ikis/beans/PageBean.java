@@ -159,6 +159,6 @@ public class PageBean implements Serializable{
     }
     
     public Data[] getDatas(){
-        return DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince);
+        return DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince,selectedSector);
     }
 }

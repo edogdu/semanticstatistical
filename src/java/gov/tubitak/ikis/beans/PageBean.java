@@ -52,7 +52,14 @@ public class PageBean implements Serializable{
     }
 
     public void setSelectedProvince(String[] selectedProvince) {
-        this.selectedProvince = selectedProvince;
+        try{
+        if(selectedProvince[0]==null)
+            this.selectedProvince = null;
+        else
+            this.selectedProvince = selectedProvince;
+        }catch(Exception ex){
+            this.selectedProvince = null;
+        }
     }
 
     public String[] getSelectedStage1() {
@@ -60,7 +67,14 @@ public class PageBean implements Serializable{
     }
 
     public void setSelectedStage1(String[] selectedStage1) {
-        this.selectedStage1 = selectedStage1;
+        try{
+        if(selectedStage1[0]==null)
+            this.selectedStage1 = null;
+        else
+            this.selectedStage1 = selectedStage1;
+        }catch(Exception ex){
+            this.selectedStage1 = null;
+        }
     }
 
     public String[] getSelectedStage2() {
@@ -68,7 +82,14 @@ public class PageBean implements Serializable{
     }
 
     public void setSelectedStage2(String[] selectedStage2) {
-        this.selectedStage2 = selectedStage2;
+        try{
+        if(selectedStage2[0]==null)
+            this.selectedStage2 = null;
+        else
+            this.selectedStage2 = selectedStage2;
+        }catch(Exception ex){
+            this.selectedStage2 = null;
+        }
     }
 
     public void setSelectedHeaders(String[] selectedHeaders) {
@@ -88,7 +109,14 @@ public class PageBean implements Serializable{
     }
 
     public void setSelectedSector(String[] selectedSector) {
-        this.selectedSector = selectedSector;
+        try{
+        if(selectedSector[0]==null)
+            this.selectedSector = null;
+        else
+            this.selectedSector = selectedSector;
+        }catch(Exception ex){
+            this.selectedSector = null;
+        }
     }
     
     public Stage1[] getStage1(){

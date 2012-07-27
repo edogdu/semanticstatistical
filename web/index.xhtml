@@ -49,12 +49,14 @@
                 <p:tab title="İl">
                     <p:selectManyCheckbox id="province" value="#{PageBean.selectedProvince}" layout="pageDirection" >
                         <f:selectItems var="pr" itemLabel="#{pr.trLabel}" itemValue="#{pr.name}" value="#{PageBean.province}"/>
+                        <p:ajax update="province" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
                     
                 <p:tab title="Sektör" >
                     <p:selectManyCheckbox id="sector" value="#{PageBean.selectedSector}" layout="pageDirection" immediate="true">
                         <f:selectItems var="s" itemLabel="#{s.enLabel}" itemValue="#{s.name}" value="#{PageBean.sectors}" />
+                        <p:ajax update="sector" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
             </p:accordionPanel>

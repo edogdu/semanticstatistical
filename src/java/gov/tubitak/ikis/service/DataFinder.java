@@ -56,7 +56,7 @@ public class DataFinder {
         while (iterator.hasNext()) {
             QuerySolution next = iterator.next();
             
-            array[i]=new Data(next.get("v").toString(), next.get("stage").toString(), new Property(metadata[0], i, metadata[0], metadata[0]), next.get("sector").toString().substring(next.get("sector").toString().indexOf("#")+1),header[0],next.get("year").toString(),next.get("period").toString().replace("Toplant?s?", ""),next.get("resource").toString());
+            array[i]=new Data(next.get("v").toString(), next.get("stage").toString(), Properties.getPropertyByName(metadata[0]), next.get("sector").toString().substring(next.get("sector").toString().indexOf("#")+1),Properties.getPropertyByName(header[0]).getTrLabel(),next.get("year").toString(),next.get("period").toString().replace("Toplant?s?", ""),next.get("resource").toString());
             i++;
         }
         }

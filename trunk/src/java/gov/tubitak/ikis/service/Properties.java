@@ -69,9 +69,8 @@ public class Properties {
     }
     
     public static Property getPropertyByName(String name){
-        name=name.substring(name.indexOf("#"));
         Property pro = null;
-        String query="select ?pro ?label ?id where{<"+name+"> rdfs:label ?label. <"+name+"> :id ?id.}";
+        String query="select ?label ?id where{<"+name+"> rdfs:label ?label. <"+name+"> :id ?id.}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         QuerySolution get = toList.get(0);

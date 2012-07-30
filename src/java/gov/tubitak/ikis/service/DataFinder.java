@@ -21,26 +21,27 @@ public class DataFinder {
     public static Data[] getdata(String[] header, String[] metadata, String[] stage1, String[] stage2, String[] city, String[] sector) {
         Data[] array = null;
         String query = "select ?v ?sector ?year ?stage ?period ?resource where{";//UNION fln kullanman lazım
-        if(header!=null && stage1==null && stage2==null&& city==null &&metadata==null){
-            for (int i = 0; i < header.length; i++) {
-                    Property[] metadata1 = Properties.getMetadata(header);
-                    for (int j = 0; j < metadata1.length; j++) {
-                        if(j!=metadata1.length-1){
-                            query+="{ :Stage1<" + metadata1[j].getName() + "> ?value} UNION ";
-                            query+="{ :Stage2<" + metadata1[j].getName() + "> ?value} UNION ";
-                            query+="{ :City<" + metadata1[j].getName() + "> ?value} UNION ";
-                        }
-                        else if(j==metadata1.length-1){
-                            query+="{ :Stage1<" + metadata1[j].getName() + "> ?value} UNION ";
-                            query+="{ :Stage2<" + metadata1[j].getName() + "> ?value} UNION ";
-                            query+="{ :City<" + metadata1[j].getName() + "> ?value}  ";
-                        }
-                    }
-                    if(i!=header.length-1)
-                        query+=" UNION ";
-                    else if(i==header.length-1)
-                        query+=".?st rdfs:label ?stage.";
+        if(header!=null && stage1==null && stage2==null&& city==null &&metadata==null){//header secili ise altındaki tum veriler
+            query+="?st1 rdf:type :Stage1.";
+            query+="?st2 rdf:type :Stage2.";
+            query+="?pr rdf:type :City.";
+            Property[] metadata1 = Properties.getMetadata(header);
+            for (int j = 0; j < metadata1.length; j++) {
+                if(j!=metadata1.length-1){
+                    query+="{?st1 <" + metadata1[j].getName() + "> ?value} UNION ";
+                    query+="{?st2 <" + metadata1[j].getName() + "> ?value} UNION ";
+                    query+="{?pr <" + metadata1[j].getName() + "> ?value} UNION ";
+                    query += "?value <" + metadata1[j].getName() + "> ?st.";
+                }
+                else if(j==metadata1.length-1){
+                    query+="{?st1 <" + metadata1[j].getName() + "> ?value} UNION ";
+                    query+="{?st2 <" + metadata1[j].getName() + "> ?value} UNION ";
+                    query+="{?pr <" + metadata1[j].getName() + "> ?value} .";
+                    query += "?value <" + metadata1[j].getName() + "> ?st.";
+                    
+                }
             }
+             query+="?st rdfs:label ?stage. ";
         }
         else if(stage1!=null && stage2!=null&& city!=null &&metadata!=null){//sehir secili ise tüm şehirler
             for (int i = 0; i < city.length; i++) {

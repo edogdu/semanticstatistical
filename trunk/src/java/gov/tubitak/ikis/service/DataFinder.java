@@ -28,16 +28,10 @@ public class DataFinder {
             Property[] metadata1 = Properties.getMetadata(header);
             for (int j = 0; j < metadata1.length; j++) {
                 if(j!=metadata1.length-1){
-                    query+="{?st1 <" + metadata1[j].getName() + "> ?value} UNION ";
-                    query+="{?st2 <" + metadata1[j].getName() + "> ?value} UNION ";
-                    query+="{?pr <" + metadata1[j].getName() + "> ?value} UNION ";
-                    query += "?value <" + metadata1[j].getName() + "> ?st.";
+                    query+="{_:a"+j+" <" + metadata1[j].getName() + "> ?value} UNION ";
                 }
                 else if(j==metadata1.length-1){
-                    query+="{?st1 <" + metadata1[j].getName() + "> ?value} UNION ";
-                    query+="{?st2 <" + metadata1[j].getName() + "> ?value} UNION ";
-                    query+="{?pr <" + metadata1[j].getName() + "> ?value} .";
-                    query += "?value <" + metadata1[j].getName() + "> ?st.";
+                    query+="{_:a"+j+" <" + metadata1[j].getName() + "> ?value} .";
                     
                 }
             }
@@ -50,7 +44,6 @@ public class DataFinder {
                 else if(i==city.length-1)
                     query+="{<"+city[i]+"> <"+metadata[0]+"> ?value}.";
             }
-            query += "?value <" + metadata[0] + "> ?st. ?st rdfs:label ?stage. ";
         }
         else if (stage1 != null && stage2 != null && city == null && metadata != null) {//sehir secili değil ama duzey2 secili ise duzey2 ve onun altındaki sehirler
             query += "{<" + stage2[0] + "> <" + metadata[0] + "> ?value} UNION";
@@ -84,28 +77,19 @@ public class DataFinder {
                 else if(i!=stage21.length-1)
                     query+="UNION";
             }
-            query += "?value <" + metadata[0] + "> ?st. ?st rdfs:label ?stage. ";
         } else if (stage1 == null && stage2 == null && city == null && metadata != null) { //sadece ustveri secili ise o ust veriyi kullanan tum stageler
             for (int j = 0; j < metadata.length; j++) {
                 if(j!=metadata.length-1){
-                    query+="{<" + metadata[j] + "> ?value} UNION ";
+                    query+="{_:a"+j+" <" + metadata[j] + "> ?value} UNION ";
                 }
                 else if(j==metadata.length-1){
-                    query+="{<" + metadata[j] + "> ?value} . ";               
-                }
-            }
-            for (int j = 0; j < metadata.length; j++) {
-                if(j!=metadata.length-1){
-                    query += "{?value <" + metadata[j] + "> ?st} UNION";
-                }
-                else if(j==metadata.length-1){
-                    query += "{?value <" + metadata[j] + "> ?st}.";
-                    
+                    query+="{_:a"+j+" <" + metadata[j] + "> ?value} . ";               
                 }
             }
         }
 
         if (header != null ||metadata != null || stage1 != null || stage2 != null || city != null|| sector != null) {
+            query += "?value :hasStage ?st.?st rdfs:label ?stage.";
             if(sector!=null)
                 query+="?value :hasSector <"+sector[0]+">.";//TODO KONTROL ET COKLU DENE SECTORUN VALUE İLİSKİSİ VARSA ONU KULLANARAK COKLU YAP
             query += "?value :hasSector ?sector. ?value :value ?v. ?value :year ?year. ?value :hasMeeting ?me.?me :name ?period. ?value :hasResource ?re. ?re :name ?resource}";
@@ -118,7 +102,9 @@ public class DataFinder {
             while (iterator.hasNext()) {
                 QuerySolution next = iterator.next();
 
-                array[i] = new Data(next.get("v").toString(), next.get("stage").toString(), Properties.getPropertyByName(metadata[0]), next.get("sector").toString().substring(next.get("sector").toString().indexOf("#") + 1), Properties.getPropertyByName(header[0]).getTrLabel(), next.get("year").toString(), next.get("period").toString().replace("Toplant?s?", ""), next.get("resource").toString());
+                array[i] = new Data(next.get("v").toString(), next.get("stage").toString(), Properties.getPropertyByName(metadata[0]), 
+                        next.get("sector").toString().substring(next.get("sector").toString().indexOf("#") + 1), Properties.getPropertyByName(header[0]).getTrLabel(), next.get("year").toString(), 
+                        next.get("period").toString().replace("Toplant?s?", ""), next.get("resource").toString());
                 i++;
             }
         }

@@ -86,7 +86,23 @@ public class DataFinder {
             }
             query += "?value <" + metadata[0] + "> ?st. ?st rdfs:label ?stage. ";
         } else if (stage1 == null && stage2 == null && city == null && metadata != null) { //sadece ustveri secili ise o ust veriyi kullanan tum stageler
-            query += "?value <" + metadata[0] + "> ?st. ?st rdfs:label ?stage. ";
+            for (int j = 0; j < metadata.length; j++) {
+                if(j!=metadata.length-1){
+                    query+="{<" + metadata[j] + "> ?value} UNION ";
+                }
+                else if(j==metadata.length-1){
+                    query+="{<" + metadata[j] + "> ?value} . ";               
+                }
+            }
+            for (int j = 0; j < metadata.length; j++) {
+                if(j!=metadata.length-1){
+                    query += "{?value <" + metadata[j] + "> ?st} UNION";
+                }
+                else if(j==metadata.length-1){
+                    query += "{?value <" + metadata[j] + "> ?st}.";
+                    
+                }
+            }
         }
 
         if (header != null ||metadata != null || stage1 != null || stage2 != null || city != null|| sector != null) {

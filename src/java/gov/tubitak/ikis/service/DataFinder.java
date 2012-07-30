@@ -20,11 +20,8 @@ public class DataFinder {
 //TODO SEKTOR, ÇOKLU metadata ve coklu header
     public static Data[] getdata(String[] header, String[] metadata, String[] stage1, String[] stage2, String[] city, String[] sector) {
         Data[] array = null;
-        String query = "select ?v ?sector ?year ?stage ?period ?resource where{";//UNION fln kullanman lazım
+        String query = "select ?v ?sector ?year ?stage ?period ?resource ?pro where{";//UNION fln kullanman lazım
         if(header!=null && stage1==null && stage2==null&& city==null &&metadata==null){//header secili ise altındaki tum veriler
-            query+="?st1 rdf:type :Stage1.";
-            query+="?st2 rdf:type :Stage2.";
-            query+="?pr rdf:type :City.";
             Property[] metadata1 = Properties.getMetadata(header);
             for (int j = 0; j < metadata1.length; j++) {
                 if(j!=metadata1.length-1){
@@ -35,7 +32,6 @@ public class DataFinder {
                     
                 }
             }
-             query+="?st rdfs:label ?stage. ";
         }
         else if(stage1!=null && stage2!=null&& city!=null &&metadata!=null){//sehir secili ise tüm şehirler
             for (int i = 0; i < city.length; i++) {
@@ -92,7 +88,7 @@ public class DataFinder {
             query += "?value :hasStage ?st.?st rdfs:label ?stage.";
             if(sector!=null)
                 query+="?value :hasSector <"+sector[0]+">.";//TODO KONTROL ET COKLU DENE SECTORUN VALUE İLİSKİSİ VARSA ONU KULLANARAK COKLU YAP
-            query += "?value :hasSector ?sector. ?value :value ?v. ?value :year ?year. ?value :hasMeeting ?me.?me :name ?period. ?value :hasResource ?re. ?re :name ?resource}";
+            query += "?value :hasSector ?sector.?value :proName ?pro. ?value :value ?v. ?value :year ?year. ?value :hasMeeting ?me.?me :name ?period. ?value :hasResource ?re. ?re :name ?resource}";
             
             ResultSet search = Sparql.search(query);
             List<QuerySolution> toList = ResultSetFormatter.toList(search);
@@ -101,8 +97,8 @@ public class DataFinder {
             int i = 0;
             while (iterator.hasNext()) {
                 QuerySolution next = iterator.next();
-
-                array[i] = new Data(next.get("v").toString(), next.get("stage").toString(), Properties.getPropertyByName(metadata[0]), 
+                Property propertyByName = Properties.getPropertyByName(next.get("pro").toString());
+                array[i] = new Data(next.get("v").toString(), next.get("stage").toString(),propertyByName , 
                         next.get("sector").toString().substring(next.get("sector").toString().indexOf("#") + 1), Properties.getPropertyByName(header[0]).getTrLabel(), next.get("year").toString(), 
                         next.get("period").toString().replace("Toplant?s?", ""), next.get("resource").toString());
                 i++;

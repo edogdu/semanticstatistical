@@ -217,8 +217,9 @@ public class CopyData {
                             Sparql.insertLiteral(TUIK+"t"+id, TUIK+"minValue", ALABILECEGI_EN_AZ_DEGER);
                             Sparql.insertLiteral(TUIK+"t"+id, TUIK+"year", YIL);
                             Sparql.insertLiteral(TUIK+"t"+id, TUIK+"value", TURKIYE_VERISI);
-                            Sparql.insertProperty(TUIK+"t"+id, TUIK+PROPERTY, TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""));
-                            Sparql.insertProperty(TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""), TUIK+"hasStage",TUIK+"t"+id );//TODO stage1
+                            Sparql.insertLiteral(TUIK+"t"+id, TUIK+"proName", TUIK+PROPERTY);
+                            Sparql.insertProperty(TUIK+"t"+id, TUIK+"hasStage", TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""));
+                            Sparql.insertProperty(TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""), TUIK+PROPERTY,TUIK+"t"+id );//TODO stage1
                             Sparql.insertProperty(TUIK+"s1"+id, RDF+"type", TUIK+"Stage1Value");
                             Sparql.insertProperty(TUIK+"s1"+id, TUIK+"hasSector", TUIK+SECTORENG);
                             Sparql.insertProperty(TUIK+"s1"+id, TUIK+"hasResource", TUIK+"r"+KAYNAKID);
@@ -228,8 +229,9 @@ public class CopyData {
                             Sparql.insertLiteral(TUIK+"s1"+id, TUIK+"minValue", ALABILECEGI_EN_AZ_DEGER);
                             Sparql.insertLiteral(TUIK+"s1"+id, TUIK+"year", YIL);
                             Sparql.insertLiteral(TUIK+"s1"+id, TUIK+"value", DUZEY1_VERISI);
-                            Sparql.insertProperty(TUIK+"s1"+id, TUIK+PROPERTY, TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""));
-                            Sparql.insertProperty(TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""), TUIK+"hasStage",TUIK+"s1"+id );
+                            Sparql.insertLiteral(TUIK+"s1"+id, TUIK+"proName", TUIK+PROPERTY);
+                            Sparql.insertProperty(TUIK+"s1"+id, TUIK+"hasStage", TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""));
+                            Sparql.insertProperty(TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""), TUIK+PROPERTY,TUIK+"s1"+id );
                             Sparql.insertProperty(TUIK+"s2"+id, RDF+"type", TUIK+"Stage2Value");
                             Sparql.insertProperty(TUIK+"s2"+id, TUIK+"hasSector", TUIK+SECTORENG);
                             Sparql.insertProperty(TUIK+"s2"+id, TUIK+"hasResource", TUIK+"r"+KAYNAKID);
@@ -239,8 +241,9 @@ public class CopyData {
                             Sparql.insertLiteral(TUIK+"s2"+id, TUIK+"minValue", ALABILECEGI_EN_AZ_DEGER);
                             Sparql.insertLiteral(TUIK+"s2"+id, TUIK+"year", YIL);
                             Sparql.insertLiteral(TUIK+"s2"+id, TUIK+"value", DUZEY2_VERISI);
-                            Sparql.insertProperty(TUIK+"s2"+id, TUIK+PROPERTY, TUIK+VERI_GIR_DUZ2.toLowerCase().replaceAll("-", ""));
-                            Sparql.insertProperty(TUIK+VERI_GIR_DUZ2.toLowerCase().replaceAll("-", ""), TUIK+"hasStage",TUIK+"s2"+id );
+                            Sparql.insertLiteral(TUIK+"s2"+id, TUIK+"proName", TUIK+PROPERTY);
+                            Sparql.insertProperty(TUIK+"s2"+id, TUIK+"hasStage", TUIK+VERI_GIR_DUZ2.toLowerCase().replaceAll("-", ""));
+                            Sparql.insertProperty(TUIK+VERI_GIR_DUZ2.toLowerCase().replaceAll("-", ""), TUIK+PROPERTY,TUIK+"s2"+id );
                             Sparql.insertProperty(TUIK+"c"+id, RDF+"type", TUIK+"CityValue");
                             Sparql.insertProperty(TUIK+"c"+id, TUIK+"hasSector", TUIK+SECTORENG);
                             Sparql.insertProperty(TUIK+"c"+id, TUIK+"hasResource", TUIK+"r"+KAYNAKID);
@@ -250,8 +253,9 @@ public class CopyData {
                             Sparql.insertLiteral(TUIK+"c"+id, TUIK+"id", "t"+id);
                             Sparql.insertLiteral(TUIK+"c"+id, TUIK+"year", YIL);
                             Sparql.insertLiteral(TUIK+"c"+id, TUIK+"value", IL_VERISI);
-                            Sparql.insertProperty(TUIK+"c"+id, TUIK+PROPERTY, TUIK+VERI_GIR_IL.toLowerCase().replaceAll("-", ""));
-                            Sparql.insertProperty(TUIK+VERI_GIR_IL.toLowerCase().replaceAll("-", ""), TUIK+"hasStage",TUIK+"c"+id );
+                            Sparql.insertLiteral(TUIK+"c"+id, TUIK+"proName", TUIK+PROPERTY);
+                            Sparql.insertProperty(TUIK+"c"+id, TUIK+"hasStage", TUIK+VERI_GIR_IL.toLowerCase().replaceAll("-", ""));
+                            Sparql.insertProperty(TUIK+VERI_GIR_IL.toLowerCase().replaceAll("-", ""), TUIK+PROPERTY,TUIK+"c"+id );
 //                            if(!KURUM_VERISI.equals("")){
 //                                Sparql.insertProperty(TUIK+"e"+id, RDF+"type", TUIK+"EnterpriseValue");
 //                                Sparql.insertLiteral(TUIK+"e"+id, TUIK+"id", "t"+id);

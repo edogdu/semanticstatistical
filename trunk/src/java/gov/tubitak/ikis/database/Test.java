@@ -52,16 +52,11 @@ public class Test {
 //                + "UNION{<http://www.tuik.com/tuik#yalova> <http://www.tuik.com/tuik#classroomCountInEducation> ?value}."
 //                + "?value <http://www.tuik.com/tuik#classroomCountInEducation> ?st. ?st rdfs:label ?stage. ?value :hasSector ?sector. "
 //                + "?value :value ?v. ?value :year ?year. ?value :hasMeeting ?me.?me :name ?period. ?value :hasResource ?re. ?re :name ?resource}";
-        String query = "select ?v ?sector ?year ?stage ?period ?resource where{?st1 rdf:type :Stage1.?st2 rdf:type :Stage2.?pr rdf:type :City."
-                + "{?st1 <http://www.tuik.com/tuik#classroomCountInEducation> ?value} UNION "
-                + "{?st2 <http://www.tuik.com/tuik#classroomCountInEducation> ?value} UNION "
-                + "{?pr <http://www.tuik.com/tuik#classroomCountInEducation> ?value} UNION "
-                + "{?st2 <http://www.tuik.com/tuik#classroomCountInPrimarySchoolsInEducation> ?value} UNION "
-                + "{?pr <http://www.tuik.com/tuik#classroomCountInPrimarySchoolsInEducation> ?value} UNION "
-                + "{?st1 <http://www.tuik.com/tuik#classroomCountInPrimarySchoolsInEducation> ?value} "
-                + "{?pr <http://www.tuik.com/tuik#sectionCountInEducation> ?value} ."
-                + "?st rdfs:label ?stage. ?value :hasSector ?sector. ?value :value ?v. "
-                + "?value :year ?year. ?value :hasMeeting ?me.?me :name ?period. ?value :hasResource ?re. ?re :name ?resource}";
+        String query = "select ?v ?sector ?year ?stage ?period ?resource where{"
+                + "{_:a0 <http://www.tuik.com/tuik#classroomCountInEducation> ?value} UNION "
+                + "{_:a1 <http://www.tuik.com/tuik#studentCountInEducation> ?value} . "
+                + "?value :hasStage ?st.?st rdfs:label ?stage.?value :hasSector ?sector. "
+                + "?value :value ?v. ?value :year ?year. ?value :hasMeeting ?me.?me :name ?period. ?value :hasResource ?re. ?re :name ?resource}";
 //        Properties.getPropertyByName("http://www.tuik.com/tuik#classroomCountInEducation");
         ResultSet search = Sparql.search(query);
         ResultSetFormatter.out(search);

@@ -30,7 +30,7 @@ public class PageBean implements Serializable{
     private String[] selectedSector;
 
     public PageBean() {
-        selectedHeaders =new String[1];
+        selectedHeaders =null;
         selectedMetadatas =null;
         selectedProvince =null;
         selectedStage1=null;

@@ -27,6 +27,12 @@
                         <f:selectItems var="h" itemLabel="#{h.trLabel}" itemValue="#{h.name}" value="#{PageBean.headers}"/>
                         <p:ajax update="metadata" event="change" />
                     </p:selectManyCheckbox>
+                </p:tab> 
+                <p:tab title="Sektör" >
+                    <p:selectManyCheckbox id="sector" value="#{PageBean.selectedSector}" layout="pageDirection" immediate="true">
+                        <f:selectItems var="s" itemLabel="#{s.enLabel}" itemValue="#{s.name}" value="#{PageBean.sectors}" />
+                        <p:ajax update="sector" event="change"/>
+                    </p:selectManyCheckbox>
                 </p:tab>
                 <p:tab title="Üstveri" >
                     <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" immediate="true">
@@ -52,41 +58,37 @@
                         <p:ajax update="province" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
-                    
-                <p:tab title="Sektör" >
-                    <p:selectManyCheckbox id="sector" value="#{PageBean.selectedSector}" layout="pageDirection" immediate="true">
-                        <f:selectItems var="s" itemLabel="#{s.enLabel}" itemValue="#{s.name}" value="#{PageBean.sectors}" />
-                        <p:ajax update="sector" event="change"/>
-                    </p:selectManyCheckbox>
-                </p:tab>
+                
             </p:accordionPanel>
                 
             </h:form>
         </ui:define>
         <ui:define id="data" name="content">
-            <p:dataTable  emptyMessage="Kayıt Bulunamadı" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data"> 
-                <p:column headerText="Düzey">
+            <p:dataTable  emptyMessage="Kayıt Bulunamadı" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data" paginator="true" rows="10"  
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                 rowsPerPageTemplate="5,10,15">   
+                <p:column headerText="Düzey" sortBy="#{data.belongsTo}">
                     #{data.belongsTo}
                 </p:column>
-                <p:column headerText="Üstveri">
+                <p:column headerText="Üstveri" sortBy="#{data.property.trLabel}">
                     #{data.property.trLabel}
                 </p:column>
-                <p:column headerText="Baslık">
+                <p:column headerText="Baslık" sortBy="#{data.header}">
                     #{data.header}
                 </p:column>
-                <p:column headerText="Sektör">
+                <p:column headerText="Sektör" sortBy="#{data.sector}">
                     #{data.sector}
                 </p:column>
-                <p:column headerText="Yıl">
+                <p:column headerText="Yıl" sortBy="#{data.year}">
                     #{data.year}
                 </p:column>
-                <p:column headerText="Dönem">
+                <p:column headerText="Dönem" sortBy="#{data.period}">
                     #{data.period}
                 </p:column>
-                <p:column headerText="Kaynak">
+                <p:column headerText="Kaynak" sortBy="#{data.resource}">
                     #{data.resource}
                 </p:column>
-                <p:column headerText="Veri">
+                <p:column headerText="Veri" sortBy="#{data.value}">
                     #{data.value}
                 </p:column>
             </p:dataTable>

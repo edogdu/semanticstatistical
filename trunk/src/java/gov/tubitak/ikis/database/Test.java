@@ -52,7 +52,9 @@ public class Test {
 //                + "UNION{<http://www.tuik.com/tuik#yalova> <http://www.tuik.com/tuik#classroomCountInEducation> ?value}."
 //                + "?value <http://www.tuik.com/tuik#classroomCountInEducation> ?st. ?st rdfs:label ?stage. ?value :hasSector ?sector. "
 //                + "?value :value ?v. ?value :year ?year. ?value :hasMeeting ?me.?me :name ?period. ?value :hasResource ?re. ?re :name ?resource}";
-        String query="select ?p ?label where{?p rdf:type owl:ObjectProperty. ?p rdfs:label ?label" +  ".FILTER( lang(?label) = \"TR\" )}";
+        String query="select ?v ?sector ?year ?stage ?period ?resource ?pro where{{_:a0 <http://www.tuik.com/tuik#classroomCountInEducation> ?value} . "
+                + "?value :hasStage ?st.?st rdfs:label ?stage.?value :hasSector ?sector.?value :proName ?pro. ?value :value ?v. "
+                + "?value :year ?year. ?value :hasMeeting ?me.?me :name ?period. ?value :hasResource ?re. ?re :name ?resource}";
 //        Properties.getPropertyByName("http://www.tuik.com/tuik#classroomCountInEducation");
         ResultSet search = Sparql.search(query);
         ResultSetFormatter.out(search);

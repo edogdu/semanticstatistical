@@ -34,7 +34,7 @@ public class Properties {
             String test=next.get("id").toString();
             if(test.contains("^^"))
                 test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
-            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(test), next.get("label").toString(),next.get("label").toString());
+            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(test), DataFinder.labelFinder(next.get("pro").toString(), "EN"),DataFinder.labelFinder(next.get("pro").toString(), "TR"));
             i++;
         }
         return array;
@@ -51,7 +51,7 @@ public class Properties {
                 
         }
         
-         query+="?pro rdfs:label ?label. ?pro :id ?id.}";
+         query+="?pro rdfs:label ?label. ?pro :id ?id.FILTER( lang(?label) = \"TR\" )}";
         ResultSet search = Sparql.search(query);
         List<QuerySolution> toList = ResultSetFormatter.toList(search);
         array=new Property[toList.size()];
@@ -62,7 +62,7 @@ public class Properties {
             String test=next.get("id").toString();
             if(test.contains("^^"))
                 test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
-            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(test), next.get("label").toString(),next.get("label").toString());
+            array[i]=new Property(next.get("pro").toString(), Integer.parseInt(test), DataFinder.labelFinder(next.get("pro").toString(), "EN"),DataFinder.labelFinder(next.get("pro").toString(), "TR"));
             i++;
         }
         return array;
@@ -78,7 +78,7 @@ public class Properties {
             String test=get.get("id").toString();
             if(test.contains("^^"))
                 test=test.replaceAll("\"", "").substring(0, test.indexOf("^^"));
-             pro= new Property(name,Integer.parseInt(test), get.get("label").toString(), get.get("label").toString());
+             pro= new Property(name,Integer.parseInt(test), DataFinder.labelFinder(get.get("label").toString(), "EN"),DataFinder.labelFinder(get.get("label").toString(), "TR"));
         }
         return pro;   
     }

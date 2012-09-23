@@ -120,23 +120,23 @@ public class CopyProperty {
                 String USTVERİTR=convert(sheet.getCell(2, j).getContents());
                 SEKTOR = convert(sheet.getCell(8, j).getContents()).replaceAll(" ", "");;//1
                 Random rnd=new Random();
-                ResultSet search = Sparql.search("select ?p where{?p rdf:type owl:ObjectProperty. ?p rdfs:label \"" + USTVERİTR+"@tr" + "\".}");
+                ResultSet search = Sparql.search("select ?p where{?p rdf:type owl:ObjectProperty. ?p rdfs:label \"" + USTVERİENG+ "\"@EN.}");
                 List<QuerySolution> toList = ResultSetFormatter.toList(search);
                 if (toList.isEmpty()) {
                     try {
-                        search = Sparql.search("select ?p where{?p rdf:type owl:ObjectProperty. ?p rdfs:label \"" + BASLIKTR + "\".}");
+                        search = Sparql.search("select ?p where{?p rdf:type owl:ObjectProperty. ?p rdfs:label \"" + BASLIK_ADI + "\"@EN.}");
                         toList = ResultSetFormatter.toList(search);
                         if(toList.isEmpty()){
                             Sparql.insertProperty(TUIK + BASLIK_ADI, RDF + "type", OWL + "ObjectProperty");
-                            //Sparql.insertLiteral(TUIK + BASLIK_ADI, RDFS + "label", BASLIK_ADI);
-                            Sparql.insertLiteral(TUIK + BASLIK_ADI, RDFS + "label", BASLIKTR);
+                            Sparql.insertLiteral(TUIK + BASLIK_ADI, RDFS + "label", BASLIK_ADI,"EN");
+                            Sparql.insertLiteral(TUIK + BASLIK_ADI, RDFS + "label", BASLIKTR,"TR");
                             Sparql.insertLiteral(TUIK + BASLIK_ADI, TUIK + "propertyType", "header");
                             Sparql.insertLiteral(TUIK + BASLIK_ADI, TUIK + "id", rnd.nextInt(100000));
                             Sparql.insertLiteral(TUIK + BASLIK_ADI, TUIK + "name", BASLIK_ADI);
                         }
                         Sparql.insertProperty(TUIK + USTVERI_ADI, RDF + "type", OWL + "ObjectProperty");
-                        //Sparql.insertLiteral(TUIK + USTVERI_ADI, RDFS + "label", USTVERİENG+"@en");
-                        Sparql.insertLiteral(TUIK + USTVERI_ADI, RDFS + "label", USTVERİTR+"@tr");
+                        Sparql.insertLiteral(TUIK + USTVERI_ADI, RDFS + "label", USTVERİENG,"EN");
+                        Sparql.insertLiteral(TUIK + USTVERI_ADI, RDFS + "label", USTVERİTR,"TR");
                         Sparql.insertProperty(TUIK + USTVERI_ADI, RDFS + "range", TUIK + "Value");
                         Sparql.insertProperty(TUIK + USTVERI_ADI, RDFS + "domain", TUIK + "City");
                         Sparql.insertProperty(TUIK + USTVERI_ADI, RDFS + "domain", TUIK + "Stage1");

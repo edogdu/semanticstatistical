@@ -118,4 +118,15 @@ public class DataFinder {
         }
         return "";
     }
+    
+    public static String labelFinder(String name,String lang){
+        String query = "select ?label ?id where{<" + name + "> rdfs:label ?label.FILTER( lang(?label) = \""+lang+"\" )}";
+        ResultSet search = Sparql.search(query);
+        List<QuerySolution> toList = ResultSetFormatter.toList(search);
+        if (!toList.isEmpty()) {
+            QuerySolution get = toList.get(0);
+            return get.get("label").toString().substring(0, get.get("label").toString().lastIndexOf("@"));
+        }
+        return "";
+    }
 }

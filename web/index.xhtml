@@ -17,6 +17,13 @@
     <ui:composition template="ikisTemplate.xhtml">
         <ui:define name="top">
             Semantik İkis
+            <h:panelGrid columns="2" style="float: right;">    
+                <h:outputLabel value="Dil:"/>
+                <p:selectOneButton value="#{PageBean.lang}" valueChangeListener="#{PageBean.redirect()}" >  
+                    <f:selectItem itemLabel="Türkçe" itemValue="TR"/>  
+                    <f:selectItem itemLabel="English" itemValue="EN"/> 
+                </p:selectOneButton>  
+            </h:panelGrid>
         </ui:define>
         <ui:define name="left">
             <h:form>

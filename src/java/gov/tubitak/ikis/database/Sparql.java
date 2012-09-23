@@ -7,6 +7,7 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -108,6 +109,33 @@ public class Sparql {
             close();
             garbageCollector();
             return true;
+    }
+    
+    /**
+     * servera 3lÃ¼ string ekler.
+     * @param res
+     * @param pro
+     * @param obj
+     * @return
+     * @throws DatabaseWriteOrDeleteException
+     * @throws DatabaseConnectException 
+     */
+    public static boolean insertLiteralWithLang(String res,String pro,String obj, String lang) throws DatabaseWriteOrDeleteException, DatabaseConnectException{
+        try {
+            makeSDBConnection();
+        } catch (Exception ex) {
+            throw new DatabaseConnectException();
+        }
+        Model model=DATASET.getDefaultModel();
+        Resource resource=model.createResource(res);
+        Literal literal = model.createLiteral(obj, lang);
+        Property p=model.createProperty(pro);
+        resource.addLiteral(p, literal); 
+        DATASET.close();
+        store.close();
+        close();
+        garbageCollector();
+        return true;
     }
     
     /**

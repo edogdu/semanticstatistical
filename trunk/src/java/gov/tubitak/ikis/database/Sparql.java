@@ -120,7 +120,7 @@ public class Sparql {
      * @throws DatabaseWriteOrDeleteException
      * @throws DatabaseConnectException 
      */
-    public static boolean insertLiteralWithLang(String res,String pro,String obj, String lang) throws DatabaseWriteOrDeleteException, DatabaseConnectException{
+    public static boolean insertLiteral(String res,String pro,String obj, String lang) throws DatabaseWriteOrDeleteException, DatabaseConnectException{
         try {
             makeSDBConnection();
         } catch (Exception ex) {

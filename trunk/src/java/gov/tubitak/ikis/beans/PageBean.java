@@ -8,11 +8,15 @@ import gov.tubitak.ikis.items.*;
 import gov.tubitak.ikis.service.DataFinder;
 import gov.tubitak.ikis.service.GetItems;
 import gov.tubitak.ikis.service.Properties;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -28,6 +32,7 @@ public class PageBean implements Serializable{
     private String[] selectedStage2;
     private String[] selectedProvince;
     private String[] selectedSector;
+    private String lang;
 
     public PageBean() {
         selectedHeaders =null;
@@ -36,6 +41,7 @@ public class PageBean implements Serializable{
         selectedStage1=null;
         selectedStage2=null;
         selectedSector=null;
+        lang="TR";
     }
 
     
@@ -49,6 +55,14 @@ public class PageBean implements Serializable{
 
     public String[] getSelectedProvince() {
         return selectedProvince;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getLang() {
+        return lang;
     }
 
     public void setSelectedProvince(String[] selectedProvince) {
@@ -101,7 +115,7 @@ public class PageBean implements Serializable{
     }
     
     public Property[] getHeaders(){
-        return Properties.getHeaders();
+        return Properties.getHeaders(lang);
     }
 
     public String[] getSelectedSector() {
@@ -150,7 +164,7 @@ public class PageBean implements Serializable{
     public Property[] getMetadatas(){
         try{
         if(selectedMetadatas==null||selectedMetadatas.length!=0||selectedHeaders[0]!=null)
-            return Properties.getMetadata(selectedHeaders);
+            return Properties.getMetadata(selectedHeaders,lang);
         }
         catch(Exception ex){
             return new Property[1];
@@ -159,6 +173,14 @@ public class PageBean implements Serializable{
     }
     
     public Data[] getDatas(){
-        return DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince,selectedSector);
+        return DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince,selectedSector,lang);
+    }
+    
+    public void redirect(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(PageBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

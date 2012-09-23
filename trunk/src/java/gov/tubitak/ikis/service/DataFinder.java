@@ -18,11 +18,11 @@ import java.util.List;
  */
 public class DataFinder {
 //TODO SEKTOR, ÇOKLU metadata ve coklu header
-    public static Data[] getdata(String[] header, String[] metadata, String[] stage1, String[] stage2, String[] city, String[] sector) {
+    public static Data[] getdata(String[] header, String[] metadata, String[] stage1, String[] stage2, String[] city, String[] sector,String lang) {
         Data[] array = null;
         String query = "select ?v ?sector ?year ?stage ?period ?resource ?pro where{";//UNION fln kullanman lazım
         if(header!=null && stage1==null && stage2==null&& city==null &&metadata==null){//header secili ise altındaki tum veriler
-            Property[] metadata1 = Properties.getMetadata(header);
+            Property[] metadata1 = Properties.getMetadata(header,lang);
             for (int j = 0; j < metadata1.length; j++) {
                 if(j!=metadata1.length-1){
                     query+="{_:a"+j+" <" + metadata1[j].getName() + "> ?value} UNION ";
@@ -97,9 +97,9 @@ public class DataFinder {
             int i = 0;
             while (iterator.hasNext()) {
                 QuerySolution next = iterator.next();
-                Property propertyByName = Properties.getPropertyByName(next.get("pro").toString());
+                Property propertyByName = Properties.getPropertyByName(next.get("pro").toString(),lang);
                 array[i] = new Data(next.get("v").toString(), next.get("stage").toString(),propertyByName , 
-                        next.get("sector").toString().substring(next.get("sector").toString().indexOf("#") + 1), Properties.getPropertyByName(header[0]).getTrLabel(), next.get("year").toString(), 
+                        next.get("sector").toString().substring(next.get("sector").toString().indexOf("#") + 1), Properties.getPropertyByName(header[0],lang).getTrLabel(), next.get("year").toString(), 
                         next.get("period").toString().replace("Toplant?s?", ""), next.get("resource").toString());
                 i++;
             }

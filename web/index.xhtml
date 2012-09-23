@@ -28,12 +28,7 @@
                         <p:ajax update="metadata" event="change" />
                     </p:selectManyCheckbox>
                 </p:tab> 
-                <p:tab title="Sektör" >
-                    <p:selectManyCheckbox id="sector" value="#{PageBean.selectedSector}" layout="pageDirection" immediate="true">
-                        <f:selectItems var="s" itemLabel="#{s.enLabel}" itemValue="#{s.name}" value="#{PageBean.sectors}" />
-                        <p:ajax update="sector" event="change"/>
-                    </p:selectManyCheckbox>
-                </p:tab>
+                
                 <p:tab title="Üstveri" >
                     <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" immediate="true">
                         <f:selectItems var="metadata" itemLabel="#{metadata.trLabel}" itemValue="#{metadata.name}" value="#{PageBean.metadatas}" />
@@ -58,7 +53,12 @@
                         <p:ajax update="province" event="change"/>
                     </p:selectManyCheckbox>
                 </p:tab>
-                
+                <p:tab title="Sektör" >
+                    <p:selectManyCheckbox id="sector" value="#{PageBean.selectedSector}" layout="pageDirection" immediate="true">
+                        <f:selectItems var="s" itemLabel="#{s.enLabel}" itemValue="#{s.name}" value="#{PageBean.sectors}" />
+                        <p:ajax update="sector" event="change"/>
+                    </p:selectManyCheckbox>
+                </p:tab>
             </p:accordionPanel>
                 
             </h:form>

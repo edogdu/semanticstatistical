@@ -21,12 +21,4 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
-    <filter>
-      <filter-name>Character Encoding Filter</filter-name>
-      <filter-class>gov.tubitak.ikis.filter.CharacterEncodingFilter</filter-class>
-   </filter>
- 	<filter-mapping>
-      <filter-name>Character Encoding Filter</filter-name>
-      <servlet-name>Faces Servlet</servlet-name>
-   </filter-mapping>
 </web-app>

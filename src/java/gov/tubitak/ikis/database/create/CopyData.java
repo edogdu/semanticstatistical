@@ -219,7 +219,7 @@ public class CopyData {
                             Sparql.insertLiteral(TUIK+"t"+id, TUIK+"value", TURKIYE_VERISI);
                             Sparql.insertLiteral(TUIK+"t"+id, TUIK+"proName", TUIK+PROPERTY);
                             Sparql.insertProperty(TUIK+"t"+id, TUIK+"hasStage", TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""));
-                            Sparql.insertProperty(TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""), TUIK+PROPERTY,TUIK+"t"+id );//TODO stage1
+                            //TURKEY DİYE CLASS LAZIM Sparql.insertProperty(TUIK+VERI_GIR_DUZ1.toLowerCase().replaceAll("-", ""), TUIK+PROPERTY,TUIK+"t"+id );//TODO stage1
                             Sparql.insertProperty(TUIK+"s1"+id, RDF+"type", TUIK+"Stage1Value");
                             Sparql.insertProperty(TUIK+"s1"+id, TUIK+"hasSector", TUIK+SECTORENG);
                             Sparql.insertProperty(TUIK+"s1"+id, TUIK+"hasResource", TUIK+"r"+KAYNAKID);

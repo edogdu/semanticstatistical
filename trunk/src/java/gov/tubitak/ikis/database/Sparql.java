@@ -111,6 +111,33 @@ public class Sparql {
             return true;
     }
     
+    
+     /**
+     * servera 3lÃ¼ string ekler.
+     * @param res
+     * @param pro
+     * @param obj
+     * @return
+     * @throws DatabaseWriteOrDeleteException
+     * @throws DatabaseConnectException 
+     */
+    public static boolean insertLiteralWithLang(String res,String pro,String obj) throws DatabaseWriteOrDeleteException, DatabaseConnectException{
+            try {
+                makeSDBConnection();
+            } catch (Exception ex) {
+                throw new DatabaseConnectException();
+            }
+            Model model=DATASET.getDefaultModel();
+            Resource resource=model.createResource(res);
+            Property p=model.createProperty(pro);
+             resource.addLiteral(p, obj); 
+            DATASET.close();
+            store.close();
+            close();
+            garbageCollector();
+            return true;
+    }
+    
     /**
      * servera 3lÃ¼ string ekler.
      * @param res

@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:i="http://ikis.gov.tr/ui">
     <h:head>
         <title>Facelet Title</title>
         <h:outputScript name="dracula_graph.js"/>
@@ -106,7 +107,8 @@
                             #{data.value}
                         </p:column>
                     </p:dataTable>
-                    <script type="text/javascript">
+            <i:ikisGraph />
+                <!--    <script type="text/javascript">
                         var graph = new Graph();
                         graph.addNode("1", "TR1-Istanbul");
                         graph.addNode("2", "TR10-Istanbul");
@@ -116,7 +118,7 @@
                         layouter.layout();
                         var renderer = new Graph.Renderer.Raphael('canvas', graph, 400, 300);
                         renderer.draw();
-                   </script>
+                   </script> -->
         </ui:define>
     </ui:composition>
 </html>

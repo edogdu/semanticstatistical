@@ -16,28 +16,30 @@ import javax.faces.context.ResponseWriter;
  * @author cem.ozkan
  */
 public class IkisGraph extends UIComponentBase{
-    private GraphModel submittedValue;
+    private GraphModel value;
     
     @Override
     public String getFamily() {
         return "gov.tubitak.components";
     }
 
-    public GraphModel getSubmittedValue() {
-        return submittedValue;
+    public GraphModel getValue() {
+        return value;
     }
 
-    public void setSubmittedValue(GraphModel submittedValue) {
-        this.submittedValue = submittedValue;
+    public void setValue(GraphModel value) {
+        this.value = value;
     }
 
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("div", this);
+        writer.writeAttribute("id", "canvas", "div");
         writer.startElement("script", null);
         writer.writeAttribute("type", "text/javascript", "script");
-        writer.append("document.onload = function() {");
+        writer.append("var redraw;");
+        writer.append("window.onload = function() {");
         writer.append("var g = new Graph();");
         writer.append("g.addNode(\"id34\", { label : \"Duzey1\" });");
          writer.append("g.addNode(\"id35\", { label : \"Duzey2\" });");

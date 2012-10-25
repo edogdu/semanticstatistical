@@ -6,5 +6,10 @@
       <component>
         <component-type>IkisGraph</component-type>
       </component>
+      <attribute>
+          <name>value</name>
+          <type>gov.tubitak.components.models.GraphModel</type>
+          <description>verilmesi gereken model</description>
+      </attribute>
 </tag>
 </facelet-taglib>

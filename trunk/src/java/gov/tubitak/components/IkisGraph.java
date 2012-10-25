@@ -15,13 +15,12 @@ import javax.faces.context.ResponseWriter;
  *
  * @author cem.ozkan
  */
-@FacesComponent(value="IkisGraph")
 public class IkisGraph extends UIComponentBase{
     private GraphModel submittedValue;
     
     @Override
     public String getFamily() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return "gov.tubitak.components";
     }
 
     public GraphModel getSubmittedValue() {

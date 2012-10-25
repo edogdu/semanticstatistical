@@ -1,28 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
-	version="2.0">
-	<namespace>http://ikis.gov.tr/ui</namespace>
-        
-        <tag>
-            <tag-name>ikisGraph</tag-name>
-		<component>
-			<component-type>IkisGraph</component-type>
-		</component>
-                <attribute>
-			<name>rendered</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-                <attribute>
-			<name>value</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-        </tag>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd" version="2.0"> 
+<namespace>http://www.ikis.com/tags</namespace>
+<tag>
+    <tag-name>ikisGraph</tag-name>
+      <component>
+        <component-type>IkisGraph</component-type>
+      </component>
+</tag>
 </facelet-taglib>

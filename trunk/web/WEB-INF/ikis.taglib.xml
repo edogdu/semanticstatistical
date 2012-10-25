@@ -5,11 +5,13 @@
     <tag-name>ikisGraph</tag-name>
       <component>
         <component-type>IkisGraph</component-type>
+        <handler-class>gov.tubitak.components.IkisGraphHandler</handler-class>
       </component>
       <attribute>
           <name>model</name>
           <type>gov.tubitak.components.models.GraphModel</type>
           <description>verilmesi gereken model</description>
+          <required>false</required>
       </attribute>
 </tag>
 </facelet-taglib>

@@ -8,13 +8,7 @@
       xmlns:i="http://www.ikis.com/tags">
     <h:head>
         <title>Facelet Title</title>
-        <h:outputScript name="dracula_graph.js"/>
-        <h:outputScript name="raphael-min.js"/>
-        <h:outputScript name="seedrandom.js"/>
-        <h:outputScript name="Curry-1.0.1.js"/>
-        <h:outputScript name="dracula_algorithms.js"/>
-        <h:outputScript name="dracula_graffle.js"/>
-        <h:outputScript name="jquery-1.4.2.min.js"/>
+
         <script>
             function open(){
                 acc.unselect(0);
@@ -35,6 +29,7 @@
         </ui:define>
         <ui:define name="left">
             <h:form>
+                
                 <p:commandButton value="Verileri Getir" ajax="false"/>
                 <p:accordionPanel multiple="true" widgetVar="acc">
                 <p:tab title="Başlık">
@@ -79,6 +74,8 @@
             </h:form>
         </ui:define>
         <ui:define id="data" name="content">
+
+            <p:fieldset legend="Tablo" style="width: 100%">
                     <p:dataTable  emptyMessage="Kayıt Bulunamadı" paginatorAlwaysVisible="true" editable="false" value="#{PageBean.datas}" var="data" paginator="true" rows="10"  
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                         rowsPerPageTemplate="5,10,15">   
@@ -107,18 +104,11 @@
                             #{data.value}
                         </p:column>
                     </p:dataTable>
-            <i:ikisGraph/>
-                <!--    <script type="text/javascript">
-                        var graph = new Graph();
-                        graph.addNode("1", "TR1-Istanbul");
-                        graph.addNode("2", "TR10-Istanbul");
-                        graph.addEdge("1", "2", {label: "hasRegion"});
-                        graph.addEdge("2", "1", {label: "hasStage1"});
-                        var layouter = new Graph.Layout.Spring(graph);
-                        layouter.layout();
-                        var renderer = new Graph.Renderer.Raphael('canvas', graph, 400, 300);
-                        renderer.draw();
-                   </script> -->
+            </p:fieldset>
+
+            <p:fieldset legend="Graph" style="width: 100%">   
+                <i:ikisGraph value=""/>
+                </p:fieldset>
         </ui:define>
     </ui:composition>
 </html>

@@ -177,7 +177,7 @@ public class PageBean implements Serializable{
         return DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince,selectedSector,lang);
     }
     
-    public GraphModel getModel(){
+    public GraphModel model(){
         Data[] data = DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince,selectedSector,lang);
         return DataFinder.getModel(data);
     }

@@ -10,25 +10,26 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import org.primefaces.component.inputtext.InputText;
 
 /**
  *
  * @author cem.ozkan
  */
-public class IkisGraph extends UIComponentBase{
-    private GraphModel value;
+public class IkisGraph extends InputText{
+    private GraphModel model;
     
     @Override
     public String getFamily() {
-        return "gov.tubitak.components";
+        return "gov.tubitak.components"; 
     }
 
-    public GraphModel getValue() {
-        return value;
+    public GraphModel getModel() {
+        return model;
     }
 
-    public void setValue(GraphModel value) {
-        this.value = value;
+    public void setModel(GraphModel model) {
+        this.model = model;
     }
 
     @Override

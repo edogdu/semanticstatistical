@@ -7,7 +7,7 @@
         <component-type>IkisGraph</component-type>
       </component>
       <attribute>
-          <name>value</name>
+          <name>model</name>
           <type>gov.tubitak.components.models.GraphModel</type>
           <description>verilmesi gereken model</description>
       </attribute>

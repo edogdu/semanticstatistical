@@ -36,6 +36,8 @@ public class IkisGraph extends UIComponentBase{
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("div", this);
         writer.startElement("script", null);
+        writer.writeAttribute("type", "text/javascript", "script");
+        writer.append("document.onload = function() {");
         writer.append("var g = new Graph();");
         writer.append("g.addNode(\"id34\", { label : \"Duzey1\" });");
          writer.append("g.addNode(\"id35\", { label : \"Duzey2\" });");
@@ -46,6 +48,7 @@ public class IkisGraph extends UIComponentBase{
          writer.append("layouter.layout();");
          writer.append("var renderer = new Graph.Renderer.Raphael('canvas', g, '400', '300');");
          writer.append("renderer.draw();");
+         writer.append("redraw = function() {layouter.layout();renderer.draw();};};");
         writer.endElement("script");
         writer.endElement("div");
     }

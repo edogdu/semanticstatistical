@@ -11,7 +11,12 @@
         <component-type>IkisGraph</component-type>
         <component-class>gov.tubitak.components.IkisGraph</component-class>
         <display-name>IkisGraph</display-name>  
-      
+        <attribute>
+            <name>model</name>
+          <type>gov.tubitak.components.models.GraphModel</type>
+          <description>verilmesi gereken model</description>
+          <required>false</required>
+        </attribute>
     </component>
 
 </faces-config>

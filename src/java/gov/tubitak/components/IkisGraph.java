@@ -17,23 +17,13 @@ import org.primefaces.component.inputtext.InputText;
  * @author cem.ozkan
  */
 public class IkisGraph extends InputText{
-    private GraphModel model;
     
-    @Override
-    public String getFamily() {
-        return "gov.tubitak.components"; 
-    }
-
-    public GraphModel getModel() {
-        return model;
-    }
-
-    public void setModel(GraphModel model) {
-        this.model = model;
-    }
-
+    private GraphModel model;
+  
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
+        model = (GraphModel) getValueExpression("model").getValue(getFacesContext().getELContext());
+        
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("div", this);
         writer.writeAttribute("id", "canvas", "div");

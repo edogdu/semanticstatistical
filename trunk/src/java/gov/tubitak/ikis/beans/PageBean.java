@@ -4,6 +4,7 @@
  */
 package gov.tubitak.ikis.beans;
 
+import gov.tubitak.components.models.GraphModel;
 import gov.tubitak.ikis.items.*;
 import gov.tubitak.ikis.service.DataFinder;
 import gov.tubitak.ikis.service.GetItems;
@@ -176,6 +177,10 @@ public class PageBean implements Serializable{
         return DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince,selectedSector,lang);
     }
     
+    public GraphModel getModel(){
+        Data[] data = DataFinder.getdata(selectedHeaders, selectedMetadatas, selectedStage1, selectedStage2, selectedProvince,selectedSector,lang);
+        return DataFinder.getModel(data);
+    }
     public void redirect(){
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");

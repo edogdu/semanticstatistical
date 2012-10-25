@@ -7,6 +7,7 @@ package gov.tubitak.ikis.service;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
+import gov.tubitak.components.models.GraphModel;
 import gov.tubitak.ikis.database.Sparql;
 import gov.tubitak.ikis.items.*;
 import java.util.Iterator;
@@ -128,5 +129,9 @@ public class DataFinder {
             return get.get("label").toString().substring(0, get.get("label").toString().lastIndexOf("@"));
         }
         return "";
+    }
+
+    public static GraphModel getModel(Data[] data) {
+        return new GraphModel();
     }
 }

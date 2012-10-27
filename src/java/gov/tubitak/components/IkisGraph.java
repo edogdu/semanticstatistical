@@ -44,7 +44,15 @@ public class IkisGraph extends InputText{
                 String sector = object.getSector();
                 String uniqueId = ""+random.nextInt(1000000);
                 String blankNode = "b"+uniqueId;
-                
+                writer.append("addStage(\""+stage+"\");");
+                writer.append("addNode(\""+blankNode+"\",\" \");");
+                writer.append("addNode(\"v"+uniqueId+"\",\""+value+"\");");
+                writer.append("addSector(\""+sector+"\");");
+                writer.append("addYear(\""+year+"\");");
+                writer.append("addEdge(\""+stage+"\",\""+blankNode+"\",\""+property+"\");");
+                writer.append("addEdge(\""+blankNode+"\",\"v"+uniqueId+"\",\""+"hasValue"+"\");");
+                writer.append("addEdge(\""+blankNode+"\",\""+year+"\",\""+"hasYear"+"\");");
+                writer.append("addEdge(\""+blankNode+"\",\""+sector+"\",\""+"hasSector"+"\");");
             }
         }
         writer.append("draw(\"500\", \"500\");");

@@ -8,6 +8,7 @@ import gov.tubitak.components.models.GraphModel;
 import gov.tubitak.ikis.items.Data;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
@@ -31,24 +32,22 @@ public class IkisGraph extends InputText{
         writer.writeAttribute("id", "canvas", "div");
         writer.startElement("script", null);
         writer.writeAttribute("type", "text/javascript", "script");
-        writer.append("var redraw;");
-        writer.append("window.onload = function() {");
-        writer.append("var g = new Graph();");
-        writer.append("g.addNode(\"duzey1\", { label : \"Duzey1\" });");
-         writer.append("g.addNode(\"duzey2\", { label : \"Duzey2\" });");
-         writer.append("g.addNode(\"il\", { label : \"Il\" });");
-         writer.append("g.addEdge(\"duzey1\", \"duzey2\", { stroke : \"#bfa\" , fill : \"#56f\", label : \"hasRegion\", directed : true});");
-         writer.append("g.addEdge(\"duzey2\", \"il\", { stroke : \"#bfa\" , fill : \"#56f\", label : \"hasCity\", directed : true});");
         Data[] data = model.getData();
-         for (int i = 0; i < data.length; i++) {
-            Data object = data[i];
-            
+        Random random= new Random();
+         if (data !=null) {
+            for (int i = 0; i < data.length; i++) {
+                Data object = data[i];
+                String stage = object.getBelongsTo();
+                String property = object.getProperty().getTrLabel();
+                String value = object.getValue();
+                String year = object.getYear();
+                String sector = object.getSector();
+                String uniqueId = ""+random.nextInt(1000000);
+                String blankNode = "b"+uniqueId;
+                
+            }
         }
-         writer.append("var layouter = new Graph.Layout.Spring(g);");
-         writer.append("layouter.layout();");
-         writer.append("var renderer = new Graph.Renderer.Raphael('canvas', g, '400', '300');");
-         writer.append("renderer.draw();");
-         writer.append("redraw = function() {layouter.layout();renderer.draw();};};");
+        writer.append("draw(\"500\", \"500\");");
         writer.endElement("script");
         writer.endElement("div");
     }

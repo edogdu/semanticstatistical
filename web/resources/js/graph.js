@@ -39,6 +39,10 @@ function addNode(id,name){
     g.addNode(id, { label : name});
 }
 
+function addBlankNode(id){
+    g.addNode(id);
+}
+
 function addEdge(source, target, labelName){
     g.addEdge(source, target, { stroke : "#bfa" , fill : "#56f", label : labelName, directed : true});
 }

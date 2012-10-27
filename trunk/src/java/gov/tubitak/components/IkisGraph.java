@@ -45,7 +45,7 @@ public class IkisGraph extends InputText{
                 String uniqueId = ""+random.nextInt(1000000);
                 String blankNode = "b"+uniqueId;
                 writer.append("addStage(\""+stage+"\");");
-                writer.append("addNode(\""+blankNode+"\",\"das\");");
+                writer.append("addBlankNode(\""+blankNode+"\");");
                 writer.append("addNode(\"v"+uniqueId+"\",\""+value+"\");");
                 writer.append("addSector(\""+sector+"\");");
                 writer.append("addYear(\""+year+"\");");

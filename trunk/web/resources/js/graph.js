@@ -5,7 +5,21 @@
 var g = new Graph();
 var stages = new Array();
 var years = new Array();
+var sectors = new Array();
 
+function addSector(sector){
+    var exist = new Boolean(true);
+    for(var i=0; i<sectors.length; i++) {
+	var value = sectors[i];
+	if(value == sector){
+            exist = false;
+        }
+    }
+    if(exist){
+        sectors.push(sector);
+        g.addNode(sector, sector);
+    }
+}
 
 function addYear(year){
     var exist = new Boolean(true);

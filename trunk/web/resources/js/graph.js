@@ -17,7 +17,7 @@ function addSector(sector){
     }
     if(exist){
         sectors.push(sector);
-        g.addNode(sector, sector);
+        addNode(sector, sector);
     }
 }
 
@@ -31,7 +31,7 @@ function addYear(year){
     }
     if(exist){
         years.push(year);
-        g.addNode(year, year);
+        addNode(year, year);
     }
 }
 
@@ -39,8 +39,8 @@ function addNode(id,name){
     g.addNode(id, { label : name});
 }
 
-function addEdge(source, target, label){
-    g.addEdge(source, target, { stroke : "#bfa" , fill : "#56f", label : label, directed : true});
+function addEdge(source, target, labelName){
+    g.addEdge(source, target, { stroke : "#bfa" , fill : "#56f", label : labelName, directed : true});
 }
 
 function addStage(name){
@@ -53,7 +53,7 @@ function addStage(name){
     }
     if(exist){
         stages.push(name);
-        g.addNode(name, name);
+        addNode(name, name);
         addTree(name);
     }
 }

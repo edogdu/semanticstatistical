@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:i="http://www.ikis.com/tags">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -25,7 +28,48 @@
         </div>
         <div>
             <div id="left">
-                <ui:insert name="left">Left</ui:insert>
+                <h:form>    
+                <p:commandButton value="Verileri Getir" ajax="false"/>
+                <p:accordionPanel multiple="true" widgetVar="acc">
+                <p:tab title="Başlık">
+                    <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
+                        <f:selectItems var="h" itemLabel="#{h.trLabel}" itemValue="#{h.name}" value="#{PageBean.headers}"/>
+                        <p:ajax update="metadata" event="change" />
+                    </p:selectManyCheckbox>
+                </p:tab> 
+                
+                <p:tab title="Üstveri" >
+                    <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" immediate="true">
+                        <f:selectItems var="metadata" itemLabel="#{metadata.trLabel}" itemValue="#{metadata.name}" value="#{PageBean.metadatas}" />
+                        <p:ajax update="metadata" event="change" />
+                    </p:selectManyCheckbox>
+                </p:tab>
+                <p:tab title="Düzey1">
+                    <p:selectManyCheckbox id="stage1" value="#{PageBean.selectedStage1}" layout="pageDirection" >
+                        <f:selectItems var="st" itemLabel="#{st.trLabel}" itemValue="#{st.name}" value="#{PageBean.stage1}"/>
+                        <p:ajax update="stage2" event="change"/>
+                    </p:selectManyCheckbox>
+                </p:tab>
+                <p:tab title="Düzey2" >
+                    <p:selectManyCheckbox id="stage2" value="#{PageBean.selectedStage2}" layout="pageDirection" >
+                        <f:selectItems var="st" itemLabel="#{st.trLabel}" itemValue="#{st.name}" value="#{PageBean.stage2}"/>
+                        <p:ajax update="province" event="change"/>
+                    </p:selectManyCheckbox>
+                </p:tab>
+                <p:tab title="İl">
+                    <p:selectManyCheckbox id="province" value="#{PageBean.selectedProvince}" layout="pageDirection" >
+                        <f:selectItems var="pr" itemLabel="#{pr.trLabel}" itemValue="#{pr.name}" value="#{PageBean.province}"/>
+                        <p:ajax update="province" event="change"/>
+                    </p:selectManyCheckbox>
+                </p:tab>
+                <p:tab title="Sektör" >
+                    <p:selectManyCheckbox id="sector" value="#{PageBean.selectedSector}" layout="pageDirection" immediate="true">
+                        <f:selectItems var="s" itemLabel="#{s.enLabel}" itemValue="#{s.name}" value="#{PageBean.sectors}" />
+                        <p:ajax update="sector" event="change"/>
+                    </p:selectManyCheckbox>
+                </p:tab>
+            </p:accordionPanel>
+            </h:form>
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>

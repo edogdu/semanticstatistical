@@ -27,52 +27,6 @@
                 </p:selectOneButton>  
             </h:panelGrid>
         </ui:define>
-        <ui:define name="left">
-            <h:form>
-                
-                <p:commandButton value="Verileri Getir" ajax="false"/>
-                <p:accordionPanel multiple="true" widgetVar="acc">
-                <p:tab title="Başlık">
-                    <p:selectManyCheckbox value="#{PageBean.selectedHeaders}" layout="pageDirection" >
-                        <f:selectItems var="h" itemLabel="#{h.trLabel}" itemValue="#{h.name}" value="#{PageBean.headers}"/>
-                        <p:ajax update="metadata" event="change" />
-                    </p:selectManyCheckbox>
-                </p:tab> 
-                
-                <p:tab title="Üstveri" >
-                    <p:selectManyCheckbox id="metadata" value="#{PageBean.selectedMetadatas}" layout="pageDirection" immediate="true">
-                        <f:selectItems var="metadata" itemLabel="#{metadata.trLabel}" itemValue="#{metadata.name}" value="#{PageBean.metadatas}" />
-                        <p:ajax update="metadata" event="change" />
-                    </p:selectManyCheckbox>
-                </p:tab>
-                <p:tab title="Düzey1">
-                    <p:selectManyCheckbox id="stage1" value="#{PageBean.selectedStage1}" layout="pageDirection" >
-                        <f:selectItems var="st" itemLabel="#{st.trLabel}" itemValue="#{st.name}" value="#{PageBean.stage1}"/>
-                        <p:ajax update="stage2" event="change"/>
-                    </p:selectManyCheckbox>
-                </p:tab>
-                <p:tab title="Düzey2" >
-                    <p:selectManyCheckbox id="stage2" value="#{PageBean.selectedStage2}" layout="pageDirection" >
-                        <f:selectItems var="st" itemLabel="#{st.trLabel}" itemValue="#{st.name}" value="#{PageBean.stage2}"/>
-                        <p:ajax update="province" event="change"/>
-                    </p:selectManyCheckbox>
-                </p:tab>
-                <p:tab title="İl">
-                    <p:selectManyCheckbox id="province" value="#{PageBean.selectedProvince}" layout="pageDirection" >
-                        <f:selectItems var="pr" itemLabel="#{pr.trLabel}" itemValue="#{pr.name}" value="#{PageBean.province}"/>
-                        <p:ajax update="province" event="change"/>
-                    </p:selectManyCheckbox>
-                </p:tab>
-                <p:tab title="Sektör" >
-                    <p:selectManyCheckbox id="sector" value="#{PageBean.selectedSector}" layout="pageDirection" immediate="true">
-                        <f:selectItems var="s" itemLabel="#{s.enLabel}" itemValue="#{s.name}" value="#{PageBean.sectors}" />
-                        <p:ajax update="sector" event="change"/>
-                    </p:selectManyCheckbox>
-                </p:tab>
-            </p:accordionPanel>
-                
-            </h:form>
-        </ui:define>
         <ui:define id="data" name="content">
 
             <p:fieldset legend="Tablo" style="width: 100%">
@@ -104,10 +58,6 @@
                             #{data.value}
                         </p:column>
                     </p:dataTable>
-            </p:fieldset>
-            <br/>
-            <p:fieldset legend="Graph">   
-                <i:ikisGraph model="#{PageBean.model()}"/>
             </p:fieldset>
         </ui:define>
     </ui:composition>

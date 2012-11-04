@@ -6,6 +6,7 @@ package gov.tubitak.components;
 
 import gov.tubitak.components.models.GraphModel;
 import gov.tubitak.ikis.items.Data;
+import gov.tubitak.ikis.items.Item;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -37,7 +38,8 @@ public class IkisGraph extends InputText{
          if (data !=null) {
             for (int i = 0; i < data.length; i++) {
                 Data object = data[i];
-                String stage = object.getBelongsTo();
+                Item item = object.getBelongsTo();
+                String stage=item.getTrLabel();
                 String property = object.getProperty().getTrLabel();
                 String value = object.getValue();
                 String year = object.getYear();

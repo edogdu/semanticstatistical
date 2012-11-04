@@ -11,11 +11,11 @@ package gov.tubitak.ikis.items;
 public interface Item {
     
     public String getName();
-    public int getId();
+    public String getId();
     public String getEnLabel();
     public String getTrLabel();
     public void setName(String name);
-    public void setId(int id);
+    public void setId(String id);
     public void setEnLabel(String enLabel);
     public void setTrLabel(String trLabel);
 }

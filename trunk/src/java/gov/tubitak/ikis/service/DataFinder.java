@@ -99,7 +99,7 @@ public class DataFinder {
             while (iterator.hasNext()) {
                 QuerySolution next = iterator.next();
                 Property propertyByName = Properties.getPropertyByName(next.get("pro").toString(),lang);
-                array[i] = new Data(next.get("v").toString(), next.get("stage").toString(),propertyByName , 
+                array[i] = new Data(next.get("v").toString(), GetItems.getItem(next.get("stage").toString()),propertyByName , 
                         next.get("sector").toString().substring(next.get("sector").toString().indexOf("#") + 1), Properties.getPropertyByName(header[0],lang).getTrLabel(), next.get("year").toString(), 
                         next.get("period").toString().replace("Toplant?s?", ""), next.get("resource").toString());
                 i++;

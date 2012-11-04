@@ -44,7 +44,8 @@ public class IkisGraph extends InputText{
                 String sector = object.getSector();
                 String uniqueId = ""+random.nextInt(1000000);
                 String blankNode = "b"+uniqueId;
-                writer.append("addStage(\""+stage+"\");");
+                writer.append("var "+stage+"r = function(){addStage(\"abs\");addEdge(\"abs\",\""+stage+"\");redraw();};");
+                writer.append("addStage(\""+stage+"\", "+stage+"r);"); 
                 writer.append("addBlankNode(\""+blankNode+"\");");
                 writer.append("addNode(\"v"+uniqueId+"\",\""+value+"\");");
                 writer.append("addSector(\""+sector+"\");");

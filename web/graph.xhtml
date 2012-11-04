@@ -21,9 +21,10 @@
             Semantik İkis
             <h:panelGrid columns="2" style="float: right;">    
                 <h:outputLabel value="Dil:"/>
-                <p:selectOneButton value="#{PageBean.lang}" valueChangeListener="#{PageBean.redirect()}" >  
+                <p:selectOneButton value="#{PageBean.lang}" >  
                     <f:selectItem itemLabel="Türkçe" itemValue="TR"/>  
                     <f:selectItem itemLabel="English" itemValue="EN"/> 
+                    <p:ajax listener="#{PageBean.redirect()}"/>
                 </p:selectOneButton>  
             </h:panelGrid>
         </ui:define>

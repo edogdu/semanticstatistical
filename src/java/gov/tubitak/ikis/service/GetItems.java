@@ -8,6 +8,7 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import gov.tubitak.ikis.database.Sparql;
+import gov.tubitak.ikis.items.Item;
 import gov.tubitak.ikis.items.Property;
 import gov.tubitak.ikis.items.Province;
 import gov.tubitak.ikis.items.Stage1;
@@ -119,5 +120,26 @@ public class GetItems {
             i++;
         }
         return array;
+    }
+    
+    public static Item getItem(String name){
+        String query="select ?st ?id ?label ?type where{?st rdfs:label \""+name+"\". ?st :id ?id. ?st rdf:type ?type. }";
+        ResultSet search = Sparql.search(query);
+        List<QuerySolution> toList = ResultSetFormatter.toList(search);
+        Item item = null;
+        Iterator<QuerySolution> iterator = toList.iterator();
+        int i=0;
+        while (iterator.hasNext()) {
+            QuerySolution next = iterator.next();
+            if(next.get("type").toString().contains("Stage1")){
+                item=new Stage1(next.get("st").toString(), next.get("id").toString(), name, name);
+            }else if(next.get("type").toString().contains("Stage2")){
+                item=new Stage2(next.get("st").toString(), next.get("id").toString(), name, name);
+            }else if(next.get("type").toString().contains("City")){
+                item=new Province(next.get("st").toString(), next.get("id").toString(), name, name);
+            }
+        }
+        
+        return item;
     }
 }

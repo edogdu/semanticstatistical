@@ -7,6 +7,9 @@ package gov.tubitak.components;
 import gov.tubitak.components.models.GraphModel;
 import gov.tubitak.ikis.items.Data;
 import gov.tubitak.ikis.items.Item;
+import gov.tubitak.ikis.items.Province;
+import gov.tubitak.ikis.items.Stage1;
+import gov.tubitak.ikis.items.Stage2;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -39,14 +42,21 @@ public class IkisGraph extends InputText{
             for (int i = 0; i < data.length; i++) {
                 Data object = data[i];
                 Item item = object.getBelongsTo();
-                String stage=item.getTrLabel();
+                String stage=item.getTrLabel();      
+                if(item instanceof Stage1){                
+                    writer.append("var "+stage+"r = function(){addStage(\"abs\");addEdge(\"abs\",\""+stage+"\");redraw();};");
+                }else if(item instanceof Stage2){            
+                    writer.append("var "+stage+"r = function(){addStage(\"abs\");addEdge(\"abs\",\""+stage+"\");redraw();};");
+                }else if(item instanceof Province){            
+                    writer.append("var "+stage+"r = function(){addStage(\"abs\");addEdge(\"abs\",\""+stage+"\");redraw();};");
+                }
                 String property = object.getProperty().getTrLabel();
                 String value = object.getValue();
                 String year = object.getYear();
                 String sector = object.getSector();
                 String uniqueId = ""+random.nextInt(1000000);
                 String blankNode = "b"+uniqueId;
-                writer.append("var "+stage+"r = function(){addStage(\"abs\");addEdge(\"abs\",\""+stage+"\");redraw();};");
+                
                 writer.append("addStage(\""+stage+"\", "+stage+"r);"); 
                 writer.append("addBlankNode(\""+blankNode+"\");");
                 writer.append("addNode(\"v"+uniqueId+"\",\""+value+"\");");
